@@ -101,7 +101,7 @@
     .eyebrow span { width: 22px; height: 1px; background: var(--gold); }
     .head-right { display: inline-flex; align-items: center; gap: 10px; }
     .lang-switch {
-      display: inline-flex; align-items: center; gap: 5px;
+      display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
       font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
       color: var(--green);
       padding: 5px 11px; border: 1px solid rgba(49, 87, 72, 0.4); border-radius: 999px;
@@ -144,7 +144,7 @@
       font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3em; color: var(--green);
       margin-bottom: 16px;
     }
-    .flow__track { display: flex; justify-content: space-between; position: relative; }
+    .flow__track { display: flex; justify-content: space-between; gap: 6px; position: relative; }
     .flow__track::before {
       content: ""; position: absolute; left: 7%; right: 7%; top: 7px; height: 1px;
       background: var(--line); z-index: 0;
@@ -152,7 +152,7 @@
     .flow__item {
       position: relative; z-index: 1;
       display: flex; flex-direction: column; align-items: center; gap: 9px;
-      flex: 1; text-align: center;
+      flex: 1 1 0; min-width: 0; text-align: center;
     }
     .dot {
       display: grid; place-items: center; width: 15px; height: 15px;
@@ -166,7 +166,7 @@
     .dot--gold.is-future span { animation: dot-pulse 2s ease-in-out infinite; }
 
     .flow__year { font-family: var(--font-mincho); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
-    .flow__label { font-family: var(--font-gothic); font-size: clamp(.72rem, 3.2vw, .82rem); font-weight: 700; color: var(--ink); }
+    .flow__label { font-family: var(--font-gothic); font-size: clamp(.68rem, 3vw, .8rem); font-weight: 700; color: var(--ink); line-height: 1.3; overflow-wrap: anywhere; word-break: break-word; }
     .flow__item--now .flow__year,
     .flow__item--next .flow__year { color: var(--green); font-weight: 700; }
     .flow__item--now .flow__label,
@@ -262,6 +262,19 @@
       .award__text { font-size: 11px; }
     }
 
+    /* 狭い画面：Contactをアイコンのみにしてフッターを収める */
+    @media (max-width: 420px) {
+      .card__foot { gap: 10px; }
+      .btn-mail { padding: 11px 13px; }
+      .btn-mail__label { display: none; }
+      .socials { gap: 8px; }
+    }
+
+    /* 極小幅：左右余白を詰めて内側の幅を確保 */
+    @media (max-width: 360px) {
+      .card { padding-left: 18px; padding-right: 18px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .card, .anim { animation: none; }
       .dot--gold.is-future span { animation: none; }
@@ -344,11 +357,11 @@
 
       <!-- Contact -->
       <div class="card__foot anim d5">
-        <a href="mailto:senasura03273@gmail.com" class="btn-mail">
+        <a href="mailto:senasura03273@gmail.com" class="btn-mail" aria-label="Contact">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
           </svg>
-          Contact
+          <span class="btn-mail__label">Contact</span>
         </a>
         <div class="socials">
           <a href="https://github.com/cloud0327" class="social" aria-label="GitHub" target="_blank" rel="noopener noreferrer">

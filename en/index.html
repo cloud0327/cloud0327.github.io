@@ -101,7 +101,7 @@
     .eyebrow span { width: 22px; height: 1px; background: var(--gold); }
     .head-right { display: inline-flex; align-items: center; gap: 10px; }
     .lang-switch {
-      display: inline-flex; align-items: center; gap: 5px;
+      display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
       font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
       color: var(--green);
       padding: 5px 11px; border: 1px solid rgba(49, 87, 72, 0.4); border-radius: 999px;
@@ -135,7 +135,7 @@
       font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3em; color: var(--green);
       margin-bottom: 16px;
     }
-    .flow__track { display: flex; justify-content: space-between; position: relative; }
+    .flow__track { display: flex; justify-content: space-between; gap: 6px; position: relative; }
     .flow__track::before {
       content: ""; position: absolute; left: 7%; right: 7%; top: 7px; height: 1px;
       background: var(--line); z-index: 0;
@@ -143,7 +143,7 @@
     .flow__item {
       position: relative; z-index: 1;
       display: flex; flex-direction: column; align-items: center; gap: 9px;
-      flex: 1; text-align: center;
+      flex: 1 1 0; min-width: 0; text-align: center;
     }
     .dot {
       display: grid; place-items: center; width: 15px; height: 15px;
@@ -157,7 +157,7 @@
     .dot--gold.is-future span { animation: dot-pulse 2s ease-in-out infinite; }
 
     .flow__year { font-family: var(--font-mincho); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
-    .flow__label { font-family: var(--font-gothic); font-size: clamp(.68rem, 3vw, .78rem); font-weight: 700; color: var(--ink); line-height: 1.35; }
+    .flow__label { font-family: var(--font-gothic); font-size: clamp(.66rem, 2.9vw, .78rem); font-weight: 700; color: var(--ink); line-height: 1.3; overflow-wrap: anywhere; word-break: break-word; }
     .flow__item--now .flow__year,
     .flow__item--next .flow__year { color: var(--green); font-weight: 700; }
     .flow__item--now .flow__label,
@@ -251,6 +251,19 @@
       .award__text { font-size: 10px; }
     }
 
+    /* narrow phones: icon-only contact so the footer never clips */
+    @media (max-width: 420px) {
+      .card__foot { gap: 10px; }
+      .btn-mail { padding: 11px 13px; }
+      .btn-mail__label { display: none; }
+      .socials { gap: 8px; }
+    }
+
+    /* very narrow: tighten side padding to reclaim inner width */
+    @media (max-width: 360px) {
+      .card { padding-left: 18px; padding-right: 18px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .card, .anim { animation: none; }
       .dot--gold.is-future span { animation: none; }
@@ -302,12 +315,12 @@
           <div class="flow__item flow__item--now">
             <span class="dot dot--gold"><span></span></span>
             <span class="flow__year">2026-07</span>
-            <span class="flow__label">Learning<br />Swift</span>
+            <span class="flow__label">Learning Swift</span>
           </div>
           <div class="flow__item flow__item--next">
             <span class="dot dot--gold is-future"><span></span></span>
             <span class="flow__year">Future</span>
-            <span class="flow__label">Certifi-<br />cations</span>
+            <span class="flow__label">Certifications</span>
           </div>
         </div>
       </div>
@@ -333,11 +346,11 @@
 
       <!-- Contact -->
       <div class="card__foot anim d5">
-        <a href="mailto:senasura03273@gmail.com" class="btn-mail">
+        <a href="mailto:senasura03273@gmail.com" class="btn-mail" aria-label="Contact">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
           </svg>
-          Contact
+          <span class="btn-mail__label">Contact</span>
         </a>
         <div class="socials">
           <a href="https://github.com/cloud0327" class="social" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
