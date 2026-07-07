@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>泉 星那 — Portfolio｜紙からデジタルへ、地続きの挑戦</title>
+  <meta name="description" content="泉 星那のポートフォリオ。名前・経歴・歩んできた流れを一枚に収めた、和モダンな名刺。" />
+
+  <style>
+    /* =========================================================
+       Design Tokens
+       ========================================================= */
+    :root {
+      --paper:    #f5f4ee;
+      --ink:      #14211d;
+      --green:    #315748;
+      --gold:     #d7b15b;
+      --muted:    #656760;
+      --line:     rgba(49, 87, 72, 0.22);
+      --panel:    #ffffff;
+      --backdrop: #eef2f0;
+      --shadow:   0 18px 40px rgba(19, 29, 25, 0.14);
+
+      --font-mincho: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
+      --font-gothic: "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Meiryo", "Noto Sans JP", sans-serif;
+      --font-sans:   "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    }
+
+    /* =========================================================
+       Reset / Base — 1画面固定・スクロールなし
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; overflow: hidden; }
+
+    body {
+      position: relative;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    svg { display: block; }
+    ol, ul { list-style: none; }
+    ::selection { background: rgba(215, 177, 91, 0.3); }
+
+    /* 紙の質感（微細なノイズ） */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    }
+
+    /* =========================================================
+       Stage — ビューポート中央に名刺を配置
+       ========================================================= */
+    .stage {
+      position: relative; z-index: 1;
+      height: 100svh;
+      display: flex; align-items: center; justify-content: center;
+      padding: max(16px, env(safe-area-inset-top)) 18px max(16px, env(safe-area-inset-bottom));
+    }
+
+    /* =========================================================
+       Card — 画面いっぱいに広がる一枚の名刺
+       ========================================================= */
+    .card {
+      position: relative;
+      width: 100%; max-width: 560px;
+      height: 100%; max-height: 760px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      gap: clamp(16px, 3.2vh, 30px);
+      padding: clamp(28px, 5vh, 52px) clamp(24px, 6vw, 48px);
+      border: 1px solid var(--line); border-radius: 18px;
+      background: rgba(245, 244, 238, 0.62);
+      box-shadow: var(--shadow);
+      animation: fade-up .9s cubic-bezier(.16,.84,.44,1) both;
+    }
+    .corner { position: absolute; width: 22px; height: 22px; }
+    .corner--tl { left: 16px;  top: 16px;    border-left: 1px solid rgba(215,177,91,.7); border-top: 1px solid rgba(215,177,91,.7); }
+    .corner--tr { right: 16px; top: 16px;    border-right: 1px solid rgba(215,177,91,.7); border-top: 1px solid rgba(215,177,91,.7); }
+    .corner--bl { left: 16px;  bottom: 16px; border-left: 1px solid rgba(215,177,91,.7); border-bottom: 1px solid rgba(215,177,91,.7); }
+    .corner--br { right: 16px; bottom: 16px; border-right: 1px solid rgba(215,177,91,.7); border-bottom: 1px solid rgba(215,177,91,.7); }
+
+    /* ---- Head ---- */
+    .card__head {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3em; color: var(--muted);
+    }
+    .eyebrow span { width: 22px; height: 1px; background: var(--gold); }
+    .seal {
+      display: grid; place-items: center; width: 30px; height: 30px;
+      border: 1px solid var(--gold); border-radius: 999px;
+      font-family: var(--font-mincho); font-size: 12px; color: var(--green);
+    }
+
+    /* ---- Identity（名前） ---- */
+    .identity { text-align: left; }
+    .identity__name {
+      font-family: var(--font-mincho); font-weight: 800;
+      font-size: clamp(2.6rem, 12vw, 4.4rem); line-height: 1.04; letter-spacing: 0.05em;
+      color: var(--ink);
+    }
+    .identity__reading { margin-top: 10px; font-size: 11px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--muted); }
+    .identity__role {
+      margin-top: 16px; font-family: var(--font-gothic); font-weight: 700;
+      font-size: clamp(.82rem, 3.6vw, .95rem); letter-spacing: 0.04em; color: var(--green);
+    }
+    .identity__tagline {
+      margin-top: 14px; font-family: var(--font-mincho);
+      font-size: clamp(.9rem, 4vw, 1.1rem); line-height: 1.8; color: var(--ink);
+    }
+    .mark { position: relative; display: inline-block; }
+    .mark::after {
+      content: ""; position: absolute; left: 0; bottom: 1px;
+      width: 100%; height: 7px; background: rgba(215,177,91,.45); transform: skewX(-6deg);
+    }
+
+    /* ---- Flow（歩んできた道・横型タイムライン） ---- */
+    .flow { position: relative; }
+    .flow__caption {
+      font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3em; color: var(--green);
+      margin-bottom: 16px;
+    }
+    .flow__track { display: flex; justify-content: space-between; position: relative; }
+    .flow__track::before {
+      content: ""; position: absolute; left: 7%; right: 7%; top: 7px; height: 1px;
+      background: var(--line); z-index: 0;
+    }
+    .flow__item {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 9px;
+      flex: 1; text-align: center;
+    }
+    .dot {
+      display: grid; place-items: center; width: 15px; height: 15px;
+      border: 1px solid var(--line); border-radius: 999px; background: var(--paper);
+    }
+    .dot span { width: 6px; height: 6px; border-radius: 999px; }
+    .dot--ink span   { background: var(--ink); }
+    .dot--green span { background: var(--green); }
+    .dot--gold { width: 21px; height: 21px; border: 2px solid var(--gold); background: var(--paper); }
+    .dot--gold span { width: 9px; height: 9px; background: var(--gold); }
+    .dot--gold.is-future span { animation: dot-pulse 2s ease-in-out infinite; }
+
+    .flow__year { font-family: var(--font-mincho); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
+    .flow__label { font-family: var(--font-gothic); font-size: clamp(.72rem, 3.2vw, .82rem); font-weight: 700; color: var(--ink); }
+    .flow__item--now .flow__year,
+    .flow__item--next .flow__year { color: var(--green); font-weight: 700; }
+    .flow__item--now .flow__label,
+    .flow__item--next .flow__label { color: var(--gold); }
+
+    /* ---- Contact ---- */
+    .card__foot {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      padding-top: clamp(14px, 2.4vh, 22px);
+      border-top: 1px solid var(--line);
+    }
+    .btn-mail {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 11px 20px; border-radius: 999px;
+      background: var(--green); color: var(--paper);
+      font-family: var(--font-gothic); font-size: 13px; font-weight: 700; letter-spacing: 0.03em;
+      transition: background-color .3s ease, color .3s ease;
+    }
+    .btn-mail:hover { background: var(--gold); color: var(--ink); }
+    .btn-mail svg { width: 17px; height: 17px; }
+
+    .socials { display: flex; align-items: center; gap: 9px; }
+    .social {
+      display: grid; place-items: center; width: 38px; height: 38px;
+      border: 1px solid var(--line); border-radius: 999px; color: var(--muted);
+      transition: border-color .3s ease, color .3s ease;
+    }
+    .social:hover { border-color: var(--green); color: var(--gold); }
+    .social svg { width: 18px; height: 18px; }
+    .social--x svg { width: 15px; height: 15px; }
+
+    /* ---- Skills / Award（Flow下のチップ帯） ---- */
+    .skills { display: flex; flex-direction: column; gap: 11px; }
+    .skills__caption { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3em; color: var(--green); }
+
+    .award {
+      display: inline-flex; align-items: center; gap: 9px; align-self: flex-start;
+      padding: 6px 14px 6px 6px;
+      border: 1px solid rgba(215, 177, 91, 0.55); border-radius: 999px;
+      background: rgba(215, 177, 91, 0.10);
+    }
+    .award__badge {
+      flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 7px;
+      background: linear-gradient(140deg, #e7c877, #c39329);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), 0 1px 2px rgba(19, 29, 25, 0.18);
+      color: #fff9e6;
+    }
+    .award__badge svg { width: 15px; height: 15px; }
+    .award__text { font-family: var(--font-gothic); font-size: 10px; font-weight: 700; letter-spacing: 0.01em; color: var(--ink); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 7px; padding: 4px 11px;
+      border: 1px solid var(--line); border-radius: 999px;
+      background: rgba(255, 255, 255, 0.4);
+      font-family: var(--font-gothic); font-size: 11px; font-weight: 500; color: var(--ink);
+      transition: border-color .3s ease, color .3s ease;
+    }
+    .chip__dot { flex: none; width: 6px; height: 6px; border-radius: 999px; background: var(--green); }
+    .chip:hover { border-color: var(--green); color: var(--green); }
+
+    /* =========================================================
+       Entrance animation
+       ========================================================= */
+    @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @keyframes dot-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    .anim { animation: fade-up .8s cubic-bezier(.16,.84,.44,1) both; }
+    .d1 { animation-delay: .18s; }
+    .d2 { animation-delay: .32s; }
+    .d3 { animation-delay: .46s; }
+    .d4 { animation-delay: .60s; }
+    .d5 { animation-delay: .72s; }
+
+    /* =========================================================
+       Responsive
+       ========================================================= */
+    @media (min-width: 600px) {
+      .stage { padding: 28px; }
+      .card { padding: 56px 52px; gap: 30px; }
+      .card__foot { padding-top: 26px; }
+    }
+
+    /* 横向き・低い画面での圧縮 */
+    @media (max-height: 620px) {
+      .card { gap: 12px; padding: 22px 28px; }
+      .identity__reading { margin-top: 6px; }
+      .identity__role { margin-top: 10px; }
+      .identity__tagline { margin-top: 8px; }
+      .skills { gap: 8px; }
+      .chips { gap: 6px; }
+      .chip { padding: 3px 9px; font-size: 10px; }
+      .award__text { font-size: 11px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card, .anim { animation: none; }
+      .dot--gold.is-future span { animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stage">
+    <div class="card">
+      <span class="corner corner--tl"></span>
+      <span class="corner corner--tr"></span>
+      <span class="corner corner--bl"></span>
+      <span class="corner corner--br"></span>
+
+      <!-- Head -->
+      <div class="card__head anim d1">
+        <span class="eyebrow"><span></span>Portfolio 2026</span>
+        <span class="seal">中</span>
+      </div>
+
+      <!-- Identity（名前） -->
+      <div class="identity anim d2">
+        <h1 class="identity__name">中尾 瀬名</h1>
+        <p class="identity__reading">Sena&nbsp;&nbsp;Nakao</p>
+        <p class="identity__role">Student・大阪</p>
+      </div>
+
+      <!-- Flow（歩んできた道） -->
+      <div class="flow anim d3">
+        <p class="flow__caption">Career Flow — 歩んできた道</p>
+        <div class="flow__track">
+          <div class="flow__item">
+            <span class="dot dot--ink"><span></span></span>
+            <span class="flow__year">2026-05</span>
+            <span class="flow__label">FE合格</span>
+          </div>
+          <div class="flow__item">
+            <span class="dot dot--green"><span></span></span>
+            <span class="flow__year">2026-06</span>
+            <span class="flow__label">58ハッカソン</span>
+          </div>
+          <div class="flow__item flow__item--now">
+            <span class="dot dot--gold"><span></span></span>
+            <span class="flow__year">2026-07</span>
+            <span class="flow__label">Swift学習中</span>
+          </div>
+          <div class="flow__item flow__item--next">
+            <span class="dot dot--gold is-future"><span></span></span>
+            <span class="flow__year">Future</span>
+            <span class="flow__label">各種資格取得</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills / Award（Flow下のチップ帯） -->
+      <div class="skills anim d4">
+        <a class="award" href="#" aria-label="Swift Student Challenge 2026 Winner">
+          <span class="award__badge">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.2l2.63 5.33 5.88.86-4.25 4.15 1 5.86L12 15.6l-5.26 2.76 1-5.86L3.5 8.39l5.88-.86L12 2.2z"/>
+            </svg>
+          </span>
+          <span class="award__text">58ハッカソン 企業賞</span>
+        </a>
+
+        <div class="chips">
+          <span class="chip"><span class="chip__dot"></span>JavaScript / React</span>
+          <span class="chip"><span class="chip__dot"></span>Java</span>
+          <span class="chip"><span class="chip__dot"></span>Dart</span>
+          <span class="chip"><span class="chip__dot"></span>Swift</span>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="card__foot anim d5">
+        <a href="mailto:senasura03273@gmail.com" class="btn-mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
+          </svg>
+          Contact
+        </a>
+        <div class="socials">
+          <a href="https://github.com/cloud0327" class="social" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/Sen4327" class="social social--x" aria-label="X" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.9 2H22l-7.5 8.58L23.5 22h-7.02l-5.5-7.19L4.68 22H1.55l8.02-9.17L.9 2h7.2l4.97 6.57L18.9 2Zm-2.46 18h1.95L7.65 3.9H5.56L16.44 20Z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/0327dap?igsh=a3ZuNHVzOThyc2w4&utm_source=qr" class="social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4A5.8 5.8 0 0 1 16.2 22H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/%E7%80%AC%E5%90%8D-%E4%B8%AD%E5%B0%BE-01864a406/?skipRedirect=true" class="social" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.56V9h3.56v11.45ZM22 0H2C.9 0 0 .9 0 2v20c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
