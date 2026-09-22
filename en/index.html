@@ -135,15 +135,14 @@
       font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3em; color: var(--green);
       margin-bottom: 16px;
     }
-    .flow__track { display: flex; justify-content: space-between; gap: 6px; position: relative; }
-    .flow__track::before {
-      content: ""; position: absolute; left: 7%; right: 7%; top: 7px; height: 1px;
-      background: var(--line); z-index: 0;
+    .flow__track {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px 16px; position: relative;
     }
     .flow__item {
       position: relative; z-index: 1;
-      display: flex; flex-direction: column; align-items: center; gap: 9px;
-      flex: 1 1 0; min-width: 0; text-align: center;
+      display: grid; grid-template-columns: 15px 34px minmax(0, 1fr);
+      align-items: center; gap: 7px; min-width: 0; text-align: left;
     }
     .dot {
       display: grid; place-items: center; width: 15px; height: 15px;
@@ -156,8 +155,8 @@
     .dot--gold span { width: 9px; height: 9px; background: var(--gold); }
     .dot--gold.is-future span { animation: dot-pulse 2s ease-in-out infinite; }
 
-    .flow__year { font-family: var(--font-mincho); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
-    .flow__label { font-family: var(--font-gothic); font-size: clamp(.66rem, 2.9vw, .78rem); font-weight: 700; color: var(--ink); line-height: 1.3; overflow-wrap: anywhere; word-break: break-word; }
+    .flow__year { font-family: var(--font-mincho); font-size: 11px; letter-spacing: 0.03em; color: var(--muted); white-space: nowrap; }
+    .flow__label { font-family: var(--font-gothic); font-size: clamp(.65rem, 2.7vw, .76rem); font-weight: 700; color: var(--ink); line-height: 1.3; overflow-wrap: anywhere; word-break: break-word; }
     .flow__item--now .flow__year,
     .flow__item--next .flow__year { color: var(--green); font-weight: 700; }
     .flow__item--now .flow__label,
@@ -293,23 +292,33 @@
         <div class="flow__track">
           <div class="flow__item">
             <span class="dot dot--ink"><span></span></span>
-            <span class="flow__year">2026-05</span>
-            <span class="flow__label">Passed FE</span>
+            <span class="flow__year">May</span>
+            <span class="flow__label">Passed FE Exam</span>
           </div>
           <div class="flow__item">
             <span class="dot dot--green"><span></span></span>
-            <span class="flow__year">2026-06</span>
-            <span class="flow__label">Hackathon</span>
+            <span class="flow__year">Jun</span>
+            <span class="flow__label">58 Hackathon (Company Award)</span>
+          </div>
+          <div class="flow__item">
+            <span class="dot dot--green"><span></span></span>
+            <span class="flow__year">Jun</span>
+            <span class="flow__label">Kithub Hackathon</span>
+          </div>
+          <div class="flow__item">
+            <span class="dot dot--green"><span></span></span>
+            <span class="flow__year">Jul</span>
+            <span class="flow__label">Attended 技育祭</span>
+          </div>
+          <div class="flow__item">
+            <span class="dot dot--green"><span></span></span>
+            <span class="flow__year">Jul</span>
+            <span class="flow__label">Apple Event (Kindai University)</span>
           </div>
           <div class="flow__item flow__item--now">
             <span class="dot dot--gold"><span></span></span>
-            <span class="flow__year">2026-07</span>
-            <span class="flow__label">Learning Swift</span>
-          </div>
-          <div class="flow__item flow__item--next">
-            <span class="dot dot--gold is-future"><span></span></span>
-            <span class="flow__year">Future</span>
-            <span class="flow__label">Certifications</span>
+            <span class="flow__year">Sep</span>
+            <span class="flow__label">Kansai AI Hackathon</span>
           </div>
         </div>
       </div>
@@ -317,7 +326,7 @@
       <!-- Skills / Award -->
       <div class="skills anim d4">
         <div class="chips">
-          <span class="chip chip--award"><span class="chip__dot"></span>Hackathon — Sponsor Award</span>
+          <span class="chip chip--award"><span class="chip__dot"></span>58 Hackathon — Company Award</span>
           <span class="chip"><span class="chip__dot"></span>JavaScript / React</span>
           <span class="chip"><span class="chip__dot"></span>Java</span>
           <span class="chip"><span class="chip__dot"></span>Dart</span>
