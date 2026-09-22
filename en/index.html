@@ -142,9 +142,15 @@
     .flow__item {
       position: relative; z-index: 1;
       display: grid; grid-template-columns: 15px 34px minmax(0, 1fr);
-      align-items: center; gap: 7px; min-width: 0; text-align: left;
+      align-items: start; gap: 7px; min-width: 0; text-align: left;
+    }
+    .flow__item:nth-child(-n + 4)::after {
+      content: ""; position: absolute; z-index: 0;
+      left: 7px; top: 7px; bottom: -17px; width: 1px;
+      background: var(--line);
     }
     .dot {
+      position: relative; z-index: 1;
       display: grid; place-items: center; width: 15px; height: 15px;
       border: 1px solid var(--line); border-radius: 999px; background: var(--paper);
     }
