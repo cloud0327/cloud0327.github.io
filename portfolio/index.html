@@ -1,0 +1,1028 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="近畿大学情報学部で情報技術を学びながら、WebアプリやiOSアプリを制作しています。制作実績と開発の記録を紹介するポートフォリオ。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:title" content="Portfolio — Selected Work">
+  <meta property="og:description" content="WebアプリやiOSアプリを中心とした制作実績と開発の記録。">
+  <title>Portfolio — Selected Work</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2213%22%20fill%3D%22%23f9f9f6%22%2F%3E%3Cpath%20d%3D%22M19%2048V16h17c17%200%2017%2024%200%2024H19%22%20fill%3D%22none%22%20stroke%3D%22%2320231f%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <!-- Seasonal availability and activation are separate. During October, the
+       short welcome splash appears automatically at each visit. The pumpkin
+       alone activates the palette, ghost and flashlight. ?season=halloween
+       enables seasonal preview; ?season=off disables all seasonal effects. -->
+  <script>
+    (function () {
+      const mode = new URLSearchParams(window.location.search).get('season');
+      const available = mode === 'halloween' || (mode !== 'off' && new Date().getMonth() === 9);
+      if (available) {
+        document.documentElement.classList.add('halloween-available', 'visit-splash-active');
+      }
+      // Do not activate the seasonal theme or hidden game until the pumpkin is tapped.
+    })();
+  </script>
+  <style>
+    :root { --paper:#f9f9f6; --ink:#20231f; --muted:#71766f; --line:#dedfda; --accent:#486853; --radius:9px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:auto; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; }
+    a:hover { text-decoration:underline; text-underline-offset:5px; }
+    a:focus-visible, summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+    .page { width:min(100% - 48px, 688px); margin:0 auto; }
+    header { padding:37px 0 0; display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+    .wordmark { font-size:15px; font-weight:720; letter-spacing:-.06em; }
+    nav { display:flex; gap:25px; font-size:13px; color:#3f4b40; }
+    .hero { padding:124px 0 112px; }
+    .eyebrow { margin:0 0 23px; color:#59675a; font-size:12px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(40px, 6.6vw, 60px); line-height:1.34; letter-spacing:-.075em; font-weight:680; }
+    .hero p.intro { margin:30px 0 0; color:#586058; font-size:14px; line-height:2.05; max-width:470px; letter-spacing:-.015em; }
+    section { scroll-margin-top:50px; }
+    .section-heading { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding:20px 0 29px; }
+    .section-heading h2 { font-size:17px; font-weight:600; letter-spacing:.005em; margin:0; }
+    .section-index { font-size:12px; letter-spacing:.03em; color:#626c62; }
+    .works { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:21px; row-gap:42px; }
+    .project { min-width:0; }
+    figure { margin:0; }
+    .preview { aspect-ratio:1.53/1; border-radius:var(--radius); overflow:hidden; border:1px solid rgba(80,90,80,.07); }
+    .preview svg { display:block; width:100%; height:100%; }
+    .project-top { display:flex; justify-content:space-between; gap:10px; margin:15px 0 8px; }
+    .project-title { margin:0; font-weight:600; line-height:1.55; font-size:17px; letter-spacing:.012em; }
+    .project-n { color:#606b60; font-size:12px; margin-top:5px; white-space:nowrap; }
+    .project-desc { margin:0 0 9px; font-size:13px; line-height:1.9; color:#515b51; min-height:48px; }
+    .meta { display:flex; flex-wrap:wrap; gap:5px; font-size:12px; color:#566157; }
+    .meta span + span::before { content:'·'; margin-right:5px; color:#9fa49d; }
+    details { margin-top:13px; border-top:1px solid #e3e5df; padding-top:11px; font-size:13px; }
+    summary { list-style:none; color:#49634d; font-weight:600; letter-spacing:.02em; cursor:pointer; width:max-content; }
+    summary::-webkit-details-marker { display:none; }
+    summary::after { content:' ＋'; }
+    details[open] summary::after { content:' −'; }
+    .detail-copy { margin-top:11px; font-size:13px; color:#505b51; line-height:1.95; }
+    .detail-copy strong { color:#343b34; }
+    .detail-copy p { margin:0 0 8px; }
+    /* Compact, unlabelled domain tiles above commit history. */
+    .what-i-do { margin-top:48px; }
+    .discipline-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; list-style:none; margin:0; padding:0; }
+    .discipline-card { min-width:0; min-height:138px; border-radius:12px; background:#efefed; color:#586159; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:17px; }
+    .discipline-card svg { width:34px; height:34px; fill:none; stroke:#67736b; stroke-width:2.25; stroke-linecap:round; stroke-linejoin:round; }
+    .discipline-card span { font-size:22px; line-height:1.2; letter-spacing:-.025em; }
+    .about { margin-top:113px; }
+    .about-copy { font-size:14px; line-height:2.15; color:#555d54; max-width:610px; margin:2px 0 23px; }
+    .tags { display:flex; gap:8px; flex-wrap:wrap; }
+    .tag { display:inline-flex; align-items:center; font-size:12px; border:1px solid #dfe2dc; border-radius:5px; color:#505b51; padding:8px 10px; }
+    .contact { margin-top:106px; border-top:1px solid var(--line); padding-top:26px; }
+    .contact-links { display:flex; flex-wrap:wrap; align-items:center; gap:12px 28px; }
+    .contact-link { display:inline-flex; align-items:center; gap:9px; padding:7px 0; font-size:13px; font-weight:600; letter-spacing:.015em; color:var(--accent); white-space:nowrap; }
+    .contact-link svg { display:block; width:19px; height:19px; flex:none; fill:currentColor; }
+    .contact-link:hover { text-decoration:none; }
+    .contact-link:hover .contact-link-name { text-decoration:underline; text-underline-offset:5px; }
+    @media (max-width:640px) { .contact-links { gap:8px 20px; } .contact-link { gap:7px; font-size:12px; } .contact-link svg { width:18px; height:18px; } }
+    footer { border-top:1px solid var(--line); margin-top:100px; padding:25px 0 35px; display:flex; justify-content:space-between; color:#626b61; font-size:12px; }
+    .visually-hidden { position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    @media (max-width:640px) { .what-i-do { margin-top:42px; } .discipline-grid { gap:9px; } .discipline-card { min-height:110px; border-radius:10px; gap:13px; } .discipline-card svg { width:28px; height:28px; } .discipline-card span { font-size:17px; } .page { width:min(100% - 38px, 688px); } header { padding-top:24px; } nav { gap:17px; } .hero { padding:94px 0 93px; } h1 { font-size:clamp(36px, 9vw, 51px); } .works { grid-template-columns:1fr; row-gap:38px; } .preview { aspect-ratio:1.64/1; } .project-desc { min-height:0; } .about { margin-top:85px; } .contact { margin-top:80px; } footer { margin-top:85px; } }
+
+
+    /* Personal facts presented as a quiet editorial table; no UI-card framing. */
+    .profile-title { font-size:clamp(39px,6vw,52px); font-weight:630; letter-spacing:-.03em; line-height:1.28; }
+    .profile-title-dot { color:var(--accent); }
+    .profile-table { margin:37px 0 0; padding:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .profile-row { display:grid; grid-template-columns:110px minmax(0,1fr); align-items:baseline; column-gap:22px; padding:16px 4px; border-bottom:1px solid var(--line); }
+    .profile-row:last-child { border-bottom:0; }
+    .profile-row dt { margin:0; font-size:12px; color:#6b776d; font-weight:550; letter-spacing:.04em; }
+    .profile-row dd { margin:0; min-width:0; color:#313b32; font-size:14px; line-height:1.75; font-weight:530; }
+    .profile-row dd strong { font-weight:600; letter-spacing:.035em; }
+    .profile-roman { color:#89938a; font-size:12px; font-weight:450; margin-left:12px; white-space:nowrap; }
+    .profile-muted { color:#7b857c; font-size:12px; font-weight:450; white-space:normal; }
+    .history-heading { display:flex; justify-content:space-between; gap:12px; padding-bottom:21px; color:#627467; font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; }
+    .history-heading span:last-child { color:#849188; font-weight:480; letter-spacing:.02em; }
+    .halloween-theme .profile-row dt,.halloween-theme .history-heading { color:#90715e; }
+    .halloween-theme .profile-row dd { color:#614a40; }
+    .halloween-theme .profile-roman,.halloween-theme .profile-muted { color:#9c7f70; }
+    .halloween-theme .profile-title-dot { color:var(--accent); }
+    @media (max-width:640px) {
+      .profile-title { font-size:clamp(37px,10vw,48px); }
+      .profile-table { margin-top:31px; }
+      .profile-row { grid-template-columns:68px minmax(0,1fr); gap:12px; padding:14px 2px; }
+      .profile-row dt { font-size:12px; }
+      .profile-row dd { font-size:13px; line-height:1.7; }
+      .profile-roman { display:block; margin-left:0; margin-top:2px; font-size:11px; }
+      .profile-muted { font-size:11px; }
+      .history-heading { font-size:10px; }
+    }
+
+    /* Personal history as a quiet Git timeline — dates are only month-specific where confirmed. */
+    .hero.hero-commit { padding-top:112px; padding-bottom:93px; }
+    .history { margin-top:53px; max-width:100%; }
+    .commit-list { list-style:none; padding:0; margin:0; }
+    .commit { --line-x:7px; position:relative; display:grid; grid-template-columns:86px minmax(0,1fr); column-gap:22px; margin-left:18px; min-height:83px; padding:0 0 21px 28px; }
+    .commit:not(:last-child)::before { content:""; position:absolute; width:1px; left:var(--line-x); top:20px; bottom:-2px; border-left:1px dotted #a4b3a8; }
+    .commit::after { content:""; position:absolute; left:1px; top:6px; width:13px; height:13px; border:1.5px solid #7e9483; border-radius:50%; background:var(--paper); transition:background-color 650ms ease, border-color 650ms ease; }
+    .commit-date { font-size:12px; line-height:1.8; letter-spacing:.04em; color:#677969; font-variant-numeric:tabular-nums; padding-top:3px; }
+    .commit-content { padding-bottom:20px; border-bottom:1px solid #e5e8e2; min-width:0; }
+    .commit h2 { margin:0 0 6px; font-size:14px; line-height:1.75; color:#34483b; font-weight:600; letter-spacing:.025em; overflow-wrap:anywhere; }
+    .commit-prefix { font-size:12px; font-weight:500; letter-spacing:.015em; color:#677a69; }
+    .commit-emoji { display:inline-block; margin-left:2px; font-size:.94em; line-height:1; vertical-align:-.06em; white-space:nowrap; }
+    .commit p { margin:0; font-size:12px; line-height:1.8; color:#758075; }
+    .commit-current::after { background:#486653; border-color:#486653; }
+    .commit-current .commit-content { border:0; padding-bottom:0; }
+    .branch-label { display:inline-block; vertical-align:middle; margin-left:7px; padding:2px 9px; border-radius:999px; background:#e6ebe4; color:#647667; font-size:10px; font-weight:550; line-height:1.5; letter-spacing:0; }
+    .branch-label-main { display:inline-flex; align-items:center; gap:5px; margin:0 6px 0 0; border:1px solid #cdd8ce; background:#edf2ec; color:#3a6146; padding:2px 9px 2px 7px; font-size:11px; font-weight:600; line-height:1.5; white-space:nowrap; }
+    .branch-label-main svg { display:block; width:13px; height:13px; flex-shrink:0; }
+    .halloween-theme .branch-label-main { background:#f0e1d5; color:#81583e; border-color:#dfbfa8; }
+    .halloween-theme .commit h2 { color:#77513e; }
+    .halloween-theme .commit-prefix,.halloween-theme .commit-date { color:#90715e; }
+    .halloween-theme .commit p { color:#947c6c; }
+    .halloween-theme .commit-content { border-color:#eddcd0; }
+    .halloween-theme .commit:not(:last-child)::before { border-color:#c8aa98; }
+    .halloween-theme .commit::after { border-color:#ac816c; }
+    .halloween-theme .commit-current::after { background:#a65330; border-color:#a65330; }
+    .halloween-theme .branch-label { background:#f0e1d5; color:#967059; }
+    @media (max-width:640px) {
+      .hero.hero-commit { padding-top:85px; padding-bottom:80px; }
+      .history { margin-top:43px; }
+      .commit { margin-left:2px; padding-left:25px; grid-template-columns:66px minmax(0,1fr); column-gap:10px; min-height:90px; }
+      .commit h2 { font-size:13px; }
+      .commit p { font-size:12px; }
+      .commit-date { font-size:11px; }
+    }
+    @media (max-width:360px) {
+      .commit { padding-left:23px; grid-template-columns:55px minmax(0,1fr); column-gap:7px; }
+      .commit h2 { font-size:12px; }
+      .commit-prefix { font-size:11px; }
+      .branch-label { margin-left:3px; }
+    }
+
+    /* Activated only by the pumpkin: the portfolio keeps its restrained layout. */
+    :root.halloween-theme {
+      --paper:#fcf4ec;
+      --ink:#352922;
+      --muted:#826e63;
+      --line:#e5d1c0;
+      --accent:#a65330;
+    }
+    body, .discipline-card, .tag, .preview, .section-heading, footer, .paper-secret-trigger,
+    nav, .eyebrow, .intro, .project-desc, .meta, .about-copy,
+    .project-n, .section-index, summary, .contact-link, .wordmark, h1, h2, h3 {
+      transition:background-color 650ms ease, border-color 650ms ease, color 650ms ease;
+    }
+    .halloween-theme nav { color:#6f5849; }
+    .halloween-theme .eyebrow { color:#a65e3d; }
+    .halloween-theme .hero .intro, .halloween-theme .project-desc,
+    .halloween-theme .about-copy { color:#68564d; }
+    .halloween-theme summary { color:#9d4e2e; }
+    .halloween-theme .section-index, .halloween-theme .project-n, .halloween-theme .meta { color:#8b6a57; }
+    .halloween-theme details { border-color:#e8d9ca; }
+    .halloween-theme .discipline-card { background:#f1e3d5; color:#714e3f; }
+    .halloween-theme .discipline-card svg { stroke:#9f674b; }
+    .halloween-theme .tag { border-color:#e1c8b6; color:#70584e; }
+    .halloween-theme .preview { border-color:#e8d8c8; }
+    .halloween-theme .season-trigger { color:#ad5931; background:transparent; }
+    .halloween-theme .season-trigger:hover { background:transparent; }
+
+
+    .halloween-theme .ghost-peek { color:#a47b69; }
+    .halloween-theme .ghost-peek:hover { background:transparent; }
+    .halloween-theme .ghost-flashlight svg { color:#8f6a55; }
+    .season-trigger { transform-origin:center; }
+    .season-trigger.is-sparking svg { animation:pumpkin-spark 740ms cubic-bezier(.2,.7,.25,1) both; }
+    @keyframes pumpkin-spark {
+      0% { transform:scale(1) rotate(0); }
+      22% { transform:scale(1.23) rotate(-13deg); }
+      48% { transform:scale(1.12) rotate(8deg); }
+      100% { transform:scale(1) rotate(0); }
+    }
+    /* The tint ripples out from the clicked pumpkin, not from an unrelated location. */
+    .theme-bloom { position:fixed; inset:0; z-index:950; pointer-events:none;
+      background:rgba(196,104,57,.14); opacity:0; clip-path:circle(0px at var(--bloom-x, 50%) var(--bloom-y, 40px)); }
+    .theme-bloom.is-playing { animation:theme-bloom-reveal 760ms ease-out both; }
+    @keyframes theme-bloom-reveal {
+      0% { clip-path:circle(0px at var(--bloom-x, 50%) var(--bloom-y, 40px)); opacity:.9; }
+      60% { opacity:.32; }
+      100% { clip-path:circle(170vmax at var(--bloom-x, 50%) var(--bloom-y, 40px)); opacity:0; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      body, .discipline-card, .tag, .preview, .section-heading, footer, .paper-secret-trigger,
+      nav, .eyebrow, .intro, .project-desc, .meta, .about-copy,
+      .project-n, .section-index, summary, .contact-link, .wordmark, h1, h2, h3 { transition:none; }
+      .theme-bloom.is-playing, .season-trigger.is-sparking svg { animation:none; }
+    }
+
+    /* Brief seasonal welcome shown automatically on each October visit. */
+    .visit-splash { display:none; position:fixed; inset:0; z-index:2000; background:#f9f9f6; color:#252820; padding:32px 24px; align-items:center; justify-items:center; grid-template-rows:1fr auto 1fr; text-align:center; opacity:1; transition:opacity 220ms ease; }
+    .visit-splash-active .visit-splash { display:grid; }
+    .visit-splash-leaving .visit-splash { opacity:0; pointer-events:none; }
+    .visit-splash-content { grid-row:2; display:flex; flex-direction:column; align-items:center; gap:0; }
+    .visit-splash-pumpkin { width:52px; height:52px; color:#aa8262; margin-bottom:29px; }
+    .visit-splash-overline { font-size:10px; font-weight:650; color:#9d795d; letter-spacing:.17em; margin:0 0 15px; }
+    .visit-splash-title { font-size:clamp(27px,4.5vw,34px); font-weight:620; letter-spacing:-.06em; line-height:1.2; margin:0; }
+    .visit-splash-caption { color:#858980; font-size:12px; letter-spacing:.025em; line-height:1.7; margin:15px 0 0; }
+    .visit-splash-skip { grid-row:3; align-self:end; border:0; background:transparent; color:#697368; font:600 12px/1.4 inherit; padding:12px 16px; border-radius:6px; cursor:pointer; }
+    .visit-splash-skip:hover { color:#88654c; background:#f1eae2; }
+    .visit-splash-skip:focus-visible { outline:2px solid #a07856; outline-offset:3px; }
+    @media (prefers-reduced-motion:reduce) { .visit-splash { transition:none; } }
+
+    /* October easter egg: all styling is scoped; main layout stays untouched. */
+    .brand-wrap { display:flex; align-items:center; gap:10px; }
+    .season-trigger { display:none; width:27px; height:27px; border:0; background:transparent; padding:3px; margin:-3px 0; color:#a07856; cursor:pointer; border-radius:7px; align-items:center; justify-content:center; }
+    .halloween-available .season-trigger { display:inline-flex; }
+    .season-trigger svg { width:22px; height:22px; }
+    .season-trigger:hover, .season-trigger:focus-visible { background:transparent; }
+    .season-trigger:focus-visible { outline:2px solid #a07856; outline-offset:3px; }
+
+    /* Halloween easter egg: a flashlight shines in from the outer page gutter. */
+
+    .ghost-playground { position:absolute; inset:0; z-index:20; pointer-events:none; }
+    .ghost-peek { display:none; position:absolute; z-index:2; width:46px; height:46px; padding:8px; border:0; border-radius:12px; background:transparent; color:#8d9a8c; cursor:pointer; touch-action:manipulation; pointer-events:auto; }
+    .halloween-active .ghost-peek.is-spawned { display:grid; place-items:center; }
+    .ghost-peek > svg { width:30px; height:30px; }
+    .ghost-peek:hover, .ghost-peek:focus-visible { background:transparent; color:#a18570; }
+    .ghost-peek:focus-visible, .paper-secret-trigger:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+    .ghost-peek .ghost-eyes-down { display:none; }
+    .ghost-peek.is-defeated { color:#ae9b92; transform:rotate(-10deg) translateY(2px); cursor:default; }
+    .ghost-peek.is-defeated:hover { background:transparent; color:#ae9b92; }
+    .ghost-peek.is-defeated .ghost-eyes-alive { display:none; }
+    .ghost-peek.is-defeated .ghost-eyes-down { display:block; }
+    .ghost-peek.is-gone { opacity:0; visibility:hidden; pointer-events:none; }
+    /* One-frame comic-style damage cue on the illuminated ghost. */
+    .ghost-hit-effect {
+      position:absolute; z-index:3; left:0; top:0; width:119px; height:78px;
+      pointer-events:none; opacity:0; visibility:hidden; transform-origin:65% 75%;
+    }
+    .ghost-hit-effect svg { display:block; width:100%; height:100%; overflow:visible; }
+    .ghost-hit-effect.is-visible { visibility:visible; animation:ghost-comic-pop 900ms both; }
+    @keyframes ghost-comic-pop {
+      0% { opacity:0; transform:translate(9px,12px) rotate(-16deg) scale(.25); }
+      18% { opacity:1; transform:translate(-3px,-3px) rotate(-9deg) scale(1.10); }
+      32% { opacity:1; transform:translate(0,-1px) rotate(-10deg) scale(1); }
+      67% { opacity:1; transform:translate(0,0) rotate(-10deg) scale(1); }
+      100% { opacity:0; transform:translate(-5px,-9px) rotate(-7deg) scale(.92); }
+    }
+    /* Fixed positioning lets the flashlight arrive from the upper-right and stop beside a ghost. */
+    .ghost-flashlight { display:none; position:fixed; z-index:900; left:var(--flash-x,100%); top:var(--flash-y,30%); width:44px; height:30px; background:transparent; pointer-events:none; }
+    .ghost-flashlight.is-active { display:block; animation:flashlight-arrive 490ms cubic-bezier(.18,.79,.29,1) both; }
+    .ghost-flashlight svg { position:relative; z-index:2; width:44px; height:30px; display:block; transform-origin:6px 15px; transform:rotate(var(--beam-angle,0deg)) scaleX(-1); color:#727b71; filter:drop-shadow(0 1px 1px rgba(0,0,0,.08)); }
+    .ghost-flashlight-beam { position:absolute; z-index:1; right:calc(100% - 6px); top:calc(50% - var(--beam-half-height,28px)); width:var(--beam-length,120px); height:calc(2 * var(--beam-half-height,28px)); pointer-events:none;
+      background:linear-gradient(270deg,rgba(255,250,209,.85) 0%, rgba(255,246,190,.54) 35%, rgba(255,244,198,.10) 80%,rgba(255,244,198,0) 100%);
+      clip-path:polygon(100% 50%,0 0,0 100%); transform-origin:100% 50%; transform:rotate(var(--beam-angle,0deg));
+      animation:beam-shine 730ms ease-out both; }
+    .ghost-flashlight-glow { position:absolute; z-index:1; left:-6px; top:1px; width:28px; height:28px; border-radius:50%; pointer-events:none;
+      background:radial-gradient(circle,rgba(255,249,224,.86) 0%,rgba(255,249,224,.43) 48%,transparent 76%); }
+    @keyframes flashlight-arrive {
+      from { opacity:0; transform:translate(86px, -72px) rotate(-16deg); }
+      to { opacity:1; transform:translate(0,0) rotate(0deg); }
+    }
+    @keyframes beam-shine { 0%,51% { opacity:0; } 82%,100% { opacity:1; } }
+    @media(prefers-reduced-motion:reduce) { .ghost-flashlight.is-active,.ghost-flashlight-beam { animation:none; } }
+    @media(prefers-reduced-motion:reduce) { .ghost-hit-effect.is-visible { animation:none; opacity:1; transform:rotate(-9deg); } }
+
+    /* A physically folded page corner: the crease acts as a hinge, and the reverse
+       surface rotates in projection instead of scaling a fixed triangle. */
+    .page { position:relative; }
+    footer { padding-right:77px; }
+    .footer-signoff { display:flex; align-items:center; }
+    .page-curl { position:absolute; bottom:0; right:0; width:100%; height:var(--curl-height,660px);
+      z-index:5; pointer-events:none; isolation:isolate; overflow:hidden; }
+    .page-curl-visual { display:block; width:100%; height:100%; overflow:hidden; }
+    .page-curl .curl-void { fill:#f9f9f6; opacity:1; }
+    .page-curl .curl-cast { fill:#333c34; opacity:.44; filter:url(#curl-shadow-blur); }
+    .page-curl .curl-surface { fill:url(#curl-paper-light); stroke:#bfc6ba; stroke-width:1.05; stroke-linejoin:round; }
+    .page-curl .curl-roll { fill:url(#curl-roll-light); }
+    .page-curl .curl-shade { fill:url(#curl-side-light); }
+    .page-curl .curl-rim { fill:none; stroke:#b0b6ae; stroke-width:1.25; stroke-linecap:round; }
+    .page-curl .curl-edge-glint { fill:none; stroke:rgba(255,255,255,.89); stroke-width:2; }
+    .page-curl .curl-paper-edge { fill:none; stroke:#f8f8f4; stroke-width:1.15; }
+    .page-curl-note { position:absolute; width:185px; color:#505b50; font-size:12px; line-height:1.78;
+      letter-spacing:.005em; text-align:left; transform:translateY(12px);
+      transform-origin:30% 90%; opacity:0; visibility:hidden; pointer-events:none;
+      text-shadow:0 1px 0 rgba(255,255,255,.46); transition:opacity 200ms ease,transform 400ms ease,visibility 0s linear 200ms; }
+    .page-curl-note .fold-date { display:block; font-size:10px; font-weight:600; letter-spacing:.1em; margin-bottom:8px; color:#899286; }
+    .page-curl-note .fold-heading { display:block; font-size:16px; font-weight:650; margin-bottom:8px; letter-spacing:-.04em; color:#3c4c40; }
+    .page-curl-note .fold-copy { display:block; }
+    .page-curl-note .fold-copy-mobile, .page-curl-note .fold-date-mobile { display:none; }
+    .page-curl.is-open .page-curl-note { opacity:1; visibility:visible; transform:translateY(0);
+      transition:opacity 250ms ease,transform 450ms ease,visibility 0s; }
+    /* Make the folded corner genuinely tappable: a generous 96px hit area when closed,
+       while the visible turned sheet becomes the hit area when opened. */
+    .page-curl-action { position:absolute; right:0; bottom:0; width:96px; height:96px; background:transparent;
+      border:0; padding:0; margin:0; cursor:pointer; pointer-events:auto;
+      -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+    .page-curl.is-open .page-curl-action { inset:0; width:100%; height:100%; }
+    .page-curl-action::before { content:''; }
+
+    .page-curl-action:focus-visible { outline:0; filter:drop-shadow(0 0 4px var(--accent)); }
+    .halloween-theme .page-curl .curl-void { fill:#f9f9f6; }
+    .halloween-theme .page-curl-note { color:#69584d; }
+    @media (max-width:640px) {
+      .ghost-peek { right:9px; }
+      .ghost-hit-effect { right:40px; top:-72px; width:107px; height:71px; }
+      footer { padding-right:62px; }
+      .page-curl-note { font-size:12px; line-height:1.6; }
+      .page-curl-note .fold-date { font-size:10px; margin-bottom:5px; }
+      .page-curl-note .fold-heading { font-size:15px; margin-bottom:5px; }
+      .page-curl-action { width:166px; height:110px; }
+      .page-curl:not(.is-open) .page-curl-action::before {
+        content:'↘ めくる'; position:absolute; top:12px; right:91px;
+        white-space:nowrap; font-size:11px; line-height:1.3;
+        letter-spacing:.02em; color:#69776a; font-weight:550;
+      }
+      .halloween-theme .page-curl-action::before { color:#8f705a; }
+      .page-curl-note .fold-copy-desktop, .page-curl-note .fold-date-desktop { display:none; }
+      .page-curl-note .fold-copy-mobile, .page-curl-note .fold-date-mobile { display:block; }
+    }
+    @media (prefers-reduced-motion:reduce) { .page-curl-note,.page-curl.is-open .page-curl-note { transition:none; } }
+  </style>
+</head>
+<body>
+ <div class="theme-bloom" id="theme-bloom" aria-hidden="true"></div>
+ <!-- The welcome is only shown AFTER clicking the seasonal symbol. -->
+ <div class="visit-splash" id="visit-splash" aria-label="ハロウィンのウェルカム画面">
+  <div class="visit-splash-content">
+   <svg class="visit-splash-pumpkin" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M31 17c.1-5 2.3-8.5 6.9-10"/><path d="M31 17c-9-7.2-22.5-2-26 10.5-5 17 7 29.5 27 29.5s32-12.5 27-29.5C55.5 15 41 9.8 32 17"/>
+    <path d="M21 28l-4 7h8M43 28l4 7h-8M22 43c7 6 13 6 20 0"/>
+   </svg>
+   <p class="visit-splash-overline">A LITTLE OCTOBER SECRET</p>
+   <p class="visit-splash-title">Happy Halloween.</p>
+   <p class="visit-splash-caption">Welcome to my portfolio.</p>
+  </div>
+  <button class="visit-splash-skip" id="visit-splash-skip" type="button">スキップ ↗</button>
+ </div>
+ <div class="page">
+  <header>
+   <div class="brand-wrap">
+    <a class="wordmark" href="#top" aria-label="トップへ">portfolio.</a>
+    <button class="season-trigger" id="season-trigger" type="button" aria-label="ハロウィンカラーに切り替える" title="ハロウィンカラーに切り替える" aria-pressed="false">
+     <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 8.5c.1-3 1.4-4.5 4.2-5.2"/><path d="M15.6 9c-3.3-3-8.3-1-9.9 3.4-2.8 7.5 2.6 15 10.3 15s13.1-7.5 10.3-15c-1.6-4.4-6.6-6.4-10-3.4"/><path d="M12 13.9l-2 3.1h4M20 13.9l2 3.1h-4M12.1 21.5c2.7 2.4 5.1 2.4 7.8 0"/></svg>
+    </button>
+   </div>
+   <nav aria-label="メインナビゲーション"><a href="#work">Work</a><a href="#top">Profile</a><a href="#contact">Contact</a></nav>
+  </header>
+  <div class="ghost-playground" id="ghost-playground">
+   <span class="ghost-hit-effect" id="ghost-hit-effect" aria-hidden="true">
+    <svg viewBox="0 0 126 84" xmlns="http://www.w3.org/2000/svg">
+     <path d="M10 36 32 34 26 15 46 26 60 5 70 25 96 13 91 33 117 34 100 48 118 66 90 63 79 80 65 68 45 79 43 62 14 65 26 49Z" fill="#fff3ad" stroke="#9a765c" stroke-width="2.1" stroke-linejoin="round"/>
+     <path d="m4 15 11 11M109 9l-9 13M121 78l-14-9" fill="none" stroke="#c49a69" stroke-width="2.6" stroke-linecap="round"/>
+     <text x="64" y="52" text-anchor="middle" fill="#493729" font-size="22" font-family="Arial Black,Arial,sans-serif" font-style="italic" font-weight="900" letter-spacing="-.9">FLASH!</text>
+    </svg>
+   </span>
+   <div class="ghost-flashlight" id="ghost-flashlight" aria-hidden="true" hidden>
+    <span class="ghost-flashlight-glow" aria-hidden="true"></span>
+    <span class="ghost-flashlight-beam" id="ghost-flashlight-beam" aria-hidden="true"></span>
+    <svg viewBox="0 0 44 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+     <rect x="3" y="11" width="14" height="8" rx="3" fill="#f7f7f1"/>
+     <path d="M17 13.5 24.5 11v8L17 16.5Z" fill="currentColor" opacity=".26" stroke="none"/>
+     <rect x="24.5" y="10" width="6" height="10" rx="2.5" fill="#f7f7f1"/>
+     <path d="M30.5 12.5 39 15l-8.5 2.5Z" fill="currentColor" opacity=".18" stroke="none"/>
+     <path d="M7 11V8m5 3V8" opacity=".55"/>
+    </svg>
+   </div>
+  </div>
+  <main id="top">
+   <div class="hero hero-commit">
+    <p class="eyebrow">Personal / Profile</p>
+    <h1 class="profile-title">About me<span class="profile-title-dot">.</span></h1>
+    <dl class="profile-table" aria-label="基本プロフィール">
+     <div class="profile-row">
+      <dt>名前</dt>
+      <dd><strong>中尾 瀬名</strong><span class="profile-roman">Sena Nakao</span></dd>
+     </div>
+     <div class="profile-row">
+      <dt>学校</dt>
+      <dd>近畿大学</dd>
+     </div>
+     <div class="profile-row">
+      <dt>所属</dt>
+      <dd>情報学部 情報学科 <span class="profile-muted">/ 1年</span></dd>
+     </div>
+     <div class="profile-row">
+      <dt>活動</dt>
+      <dd>個人開発・ハッカソン <span class="profile-muted">/ Web・iOS</span></dd>
+     </div>
+     <div class="profile-row">
+      <dt>関心領域</dt>
+      <dd>AI・セキュリティ・UI/UX</dd>
+     </div>
+    </dl>
+
+    <section class="what-i-do" id="what-i-do" aria-label="制作・関心領域">
+     <ul class="discipline-grid" aria-label="制作・関心領域">
+      <li class="discipline-card">
+       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg>
+       <span>Web</span>
+      </li>
+      <li class="discipline-card">
+       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5.5" y="2" width="13" height="20" rx="2.5"/><path d="M11.8 18h.4"/></svg>
+       <span>Apps</span>
+      </li>
+      <li class="discipline-card">
+       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5 20 6v5.8c0 5-3.1 8.1-8 9.7-4.9-1.6-8-4.7-8-9.7V6L12 2.5Z"/><path d="m8.7 12.2 2.3 2.3 4.5-4.8"/></svg>
+       <span>Security</span>
+      </li>
+     </ul>
+    </section>
+    <div class="history" aria-label="これまでの活動履歴">
+     <div class="history-heading"><span>Commit history</span><span>2026 — Present</span></div>
+     <ol class="commit-list">
+      <li class="commit">
+       <time class="commit-date" datetime="2026-04">2026.04</time>
+       <div class="commit-content"><h2><span class="commit-prefix">commit:</span> 近畿大学 情報学部に入学 <span class="commit-emoji" aria-hidden="true">🎓</span></h2><p>情報技術を学び、ものづくりに取り組む。</p></div>
+      </li>
+      <li class="commit">
+       <time class="commit-date" datetime="2026-05">2026.05</time>
+       <div class="commit-content"><h2><span class="commit-prefix">commit:</span> 基本情報技術者試験に合格 <span class="commit-emoji" aria-hidden="true">📘</span></h2><p>ITの基礎知識を体系的に学び、資格を取得。</p></div>
+      </li>
+      <li class="commit">
+       <time class="commit-date" datetime="2026-05">2026.05</time>
+       <div class="commit-content"><h2><span class="commit-prefix">commit:</span> ハッカソンで企業賞を受賞 <span class="commit-emoji" aria-hidden="true">🎖️</span></h2><p>チームでアイデアを形にし、企業賞をいただきました。</p></div>
+      </li>
+      <li class="commit commit-current">
+       <time class="commit-date" datetime="2026-10">2026.10</time>
+       <div class="commit-content"><h2><span class="branch-label branch-label-main" aria-label="現在のブランチ main"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="3" r="1.65"/><circle cx="11" cy="4.5" r="1.65"/><circle cx="5" cy="13" r="1.65"/><path d="M5 4.65v6.7M11 6.15v1.1c0 2.6-6 1.2-6 4.1"/></svg>main</span> AI・Securityを探究中 <span class="commit-emoji" aria-hidden="true">🔐</span></h2><p>技術だけでなく、使いやすさも考える。</p></div>
+      </li>
+     </ol>
+    </div>
+   </div>
+   <section id="work" aria-labelledby="work-heading">
+    <div class="section-heading"><h2 id="work-heading">Selected work</h2><span class="section-index">01 — 04</span></div>
+    <div class="works">
+     <article class="project">
+      <figure class="preview">
+       <svg viewBox="0 0 336 220" role="img" aria-label="PixPlaceのコンセプト図解。部屋の座席の空きと利用状況を上から見たマップで表示。" xmlns="http://www.w3.org/2000/svg">
+        <rect width="336" height="220" fill="#e7eee7"/>
+        <rect x="29" y="24" width="278" height="172" rx="9" fill="#fff" stroke="#d4ded5"/>
+        <rect x="30" y="24" width="276" height="25" rx="9" fill="#f8faf7"/><rect x="30" y="40" width="276" height="9" fill="#f8faf7"/>
+        <circle cx="43" cy="36" r="3" fill="#d1ddd0"/><circle cx="54" cy="36" r="3" fill="#d1ddd0"/><circle cx="65" cy="36" r="3" fill="#d1ddd0"/>
+        <text x="43" y="68" fill="#526956" font-size="9" font-weight="700" font-family="Arial,sans-serif">STUDY ROOM A</text>
+        <rect x="234" y="56" rx="6" width="57" height="17" fill="#e8f2e9"/><text x="262" y="67" text-anchor="middle" font-size="8" font-family="Arial,sans-serif" fill="#52705a">12 available</text>
+        <g stroke="#bccfc0" stroke-width="1.2">
+        <rect x="44" y="83" width="43" height="24" rx="4" fill="#f5f8f2"/><rect x="95" y="83" width="43" height="24" rx="4" fill="#b4c7b6"/><rect x="146" y="83" width="43" height="24" rx="4" fill="#f5f8f2"/><rect x="197" y="83" width="43" height="24" rx="4" fill="#f5f8f2"/><rect x="248" y="83" width="43" height="24" rx="4" fill="#b4c7b6"/>
+        <rect x="44" y="116" width="43" height="24" rx="4" fill="#b4c7b6"/><rect x="95" y="116" width="43" height="24" rx="4" fill="#f5f8f2"/><rect x="146" y="116" width="43" height="24" rx="4" fill="#f5f8f2"/><rect x="197" y="116" width="43" height="24" rx="4" fill="#b4c7b6"/><rect x="248" y="116" width="43" height="24" rx="4" fill="#f5f8f2"/>
+        <rect x="44" y="149" width="43" height="24" rx="4" fill="#f5f8f2"/><rect x="95" y="149" width="43" height="24" rx="4" fill="#b4c7b6"/><rect x="146" y="149" width="43" height="24" rx="4" fill="#f5f8f2"/><rect x="197" y="149" width="43" height="24" rx="4" fill="#f5f8f2"/><rect x="248" y="149" width="43" height="24" rx="4" fill="#b4c7b6"/>
+        </g>
+        <g fill="#8c9c8d" font-size="8" font-family="Arial,sans-serif" text-anchor="middle"><text x="65" y="98">01</text><text x="116" y="98">02</text><text x="167" y="98">03</text><text x="218" y="98">04</text><text x="269" y="98">05</text><text x="65" y="131">06</text><text x="116" y="131">07</text><text x="167" y="131">08</text><text x="218" y="131">09</text><text x="269" y="131">10</text><text x="65" y="164">11</text><text x="116" y="164">12</text><text x="167" y="164">13</text><text x="218" y="164">14</text><text x="269" y="164">15</text></g>
+       </svg>
+       <figcaption class="visually-hidden">説明用の概念図。アプリの実際の画面ではありません。</figcaption>
+      </figure>
+      <div class="project-top"><h3 class="project-title">PixPlace</h3><span class="project-n">01 / Web</span></div>
+      <p class="project-desc">空き席と利用状況を、ピクセルマップで直感的に把握できるWebサービス。</p>
+      <div class="meta"><span>React</span><span>Supabase</span><span>NFC / QR</span></div>
+      <details><summary>仕組みを見る</summary><div class="detail-copy"><p><strong>課題：</strong>自習スペースの利用状況が離れた場所から分かりにくい。</p><p><strong>解決：</strong>席・机のNFCやQRから利用を開始し、公開マップに状況を反映。</p></div></details>
+     </article>
+     <article class="project">
+      <figure class="preview">
+       <svg viewBox="0 0 336 220" role="img" aria-label="ひかげみちのコンセプト図解。地図上に最短経路と日陰優先経路の2本のルートが描かれる。" xmlns="http://www.w3.org/2000/svg">
+        <rect width="336" height="220" fill="#eceee9"/>
+        <rect x="26" y="23" width="284" height="174" rx="8" fill="#f7f8f4"/>
+        <path d="M45 28V192M119 28V192M194 28V192M265 28V192M26 64H310M26 123H310M26 169H310" stroke="#d9ddd7" stroke-width="10" fill="none"/>
+        <rect x="52" y="72" width="57" height="40" rx="5" fill="#d8e5d9"/><rect x="201" y="130" width="55" height="31" rx="5" fill="#d6e3d7"/><rect x="273" y="73" width="28" height="40" rx="5" fill="#e6e8e3"/>
+        <path d="M49 169L119 169L119 63L265 63L265 34L287 34" fill="none" stroke="#c5c9c4" stroke-width="5" stroke-dasharray="4 6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M49 169L119 169L119 123L194 123L194 63L265 63L265 34L287 34" fill="none" stroke="#728e7c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M119 123L194 123L194 63" fill="none" stroke="#9788b8" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="49" cy="169" r="8" fill="white" stroke="#667d6c" stroke-width="3"/><circle cx="287" cy="34" r="8" fill="#4f6657" stroke="#fff" stroke-width="2"/>
+        <rect x="47" y="38" width="87" height="23" rx="11" fill="#fff"/><circle cx="60" cy="49" r="4" fill="#9788b8"/><text x="69" y="52" fill="#617168" font-size="9" font-family="Arial,sans-serif">日陰優先ルート</text>
+       </svg>
+       <figcaption class="visually-hidden">説明用の概念図。実際の地図画面・経路データではありません。</figcaption>
+      </figure>
+      <div class="project-top"><h3 class="project-title">ひかげみち</h3><span class="project-n">02 / iOS</span></div>
+      <p class="project-desc">日陰や段差を考慮して、暑い日の徒歩移動を支援する経路探索アプリ。</p>
+      <div class="meta"><span>SwiftUI</span><span>MapKit</span><span>PLATEAU</span></div>
+      <details><summary>仕組みを見る</summary><div class="detail-copy"><p><strong>課題：</strong>最短距離だけでは、猛暑時に快適な徒歩経路を選びにくい。</p><p><strong>解決：</strong>3D都市モデルから日陰を推定し、状況に応じた経路を案内する。</p></div></details>
+     </article>
+     <article class="project">
+      <figure class="preview">
+       <svg viewBox="0 0 336 220" role="img" aria-label="mukashimeguriのコンセプトイラスト。障子のある古民家の室内風景。" xmlns="http://www.w3.org/2000/svg">
+        <rect width="336" height="220" fill="#e9e5da"/>
+        <rect x="29" y="25" width="278" height="170" rx="7" fill="#d8d3c6"/>
+        <path d="M30 25H306V134H30Z" fill="#ded9cb"/><path d="M30 134H306V195H30Z" fill="#b8ae95"/>
+        <path d="M30 195L102 134H234L306 195" fill="#c9bda0"/>
+        <rect x="48" y="38" width="91" height="103" fill="#f2ebd7" stroke="#867e6c" stroke-width="5"/>
+        <path d="M48 89H139M93 38V141M48 63H139M48 115H139" stroke="#b4a997" stroke-width="2.5"/>
+        <rect x="197" y="47" width="81" height="89" fill="#8e8776"/><rect x="205" y="55" width="65" height="69" fill="#c7bc9f"/>
+        <path d="M237 55V124M205 88H270" stroke="#9a9079" stroke-width="2"/>
+        <path d="M99 159L156 138L224 160L168 183Z" fill="#a28e72"/><path d="M156 138V152M168 183V195M224 160V177" stroke="#8e7c64" stroke-width="4"/>
+        <path d="M30 195L102 134M306 195L234 134" stroke="#dfd3b8" stroke-width="3"/>
+        <rect x="54" y="46" width="76" height="87" fill="#f4e9cb" opacity=".14"/>
+       </svg>
+       <figcaption class="visually-hidden">説明用イラスト。実際の古民家を再現した画像ではありません。</figcaption>
+      </figure>
+      <div class="project-top"><h3 class="project-title">mukashimeguri</h3><span class="project-n">03 / Creative</span></div>
+      <p class="project-desc">古民家の空間や風景を手がかりに、昔の暮らしを体験するプロジェクト。</p>
+      <div class="meta"><span>SwiftUI</span><span>Visual Design</span><span>Spatial UX</span></div>
+      <details><summary>仕組みを見る</summary><div class="detail-copy"><p><strong>コンセプト：</strong>視点や室内の風景を通して、空間を探索する。</p><p><strong>制作：</strong>室内の家具配置や視点間の整合性を考えたビジュアル制作。</p></div></details>
+     </article>
+     <article class="project">
+      <figure class="preview">
+       <svg viewBox="0 0 336 220" role="img" aria-label="『また、会いに。』の仮モック。秋の墓地で落ち葉拾いや墓石の掃除をする3Dゲームのイメージ。" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+         <linearGradient id="visit-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#afb4a0"/><stop offset="1" stop-color="#ded7bb"/></linearGradient>
+         <linearGradient id="visit-stone" x1="0" y1="0" x2="1" y2=".7"><stop offset="0" stop-color="#aca89a"/><stop offset="1" stop-color="#777e71"/></linearGradient>
+        </defs>
+        <rect width="336" height="220" fill="#eae5d9"/>
+        <rect x="20" y="16" width="296" height="188" rx="8" fill="url(#visit-sky)"/>
+        <path d="M20 117Q78 92 135 116T245 109T316 117V204H20Z" fill="#747e68"/>
+        <path d="M20 148Q120 119 205 145T316 135V204H20Z" fill="#667460"/>
+        <path d="M20 190L124 148 243 153 316 190V204H20Z" fill="#918e76"/>
+        <path d="M85 144v-68M85 76q-25-36-49 3Q56 92 85 83q22 15 51-10-26-32-51 3Z" fill="#5b6658" stroke="#48574b" stroke-width="3"/>
+        <path d="M277 131V67M277 68q-29-26-44 7 23 14 44 5 19 13 37-5-11-25-37-7Z" fill="#626b58" stroke="#495449" stroke-width="3"/>
+        <path d="M115 182L139 123H209L238 182Z" fill="#777d70" opacity=".7"/>
+        <path d="M140 148v-38h68v38Z" fill="url(#visit-stone)"/><path d="M135 151h79v10h-79Z" fill="#949487"/>
+        <path d="M150 110V94q0-8 9-8h30q10 0 10 8v16Z" fill="#969b8d"/>
+        <rect x="159" y="104" width="30" height="2" rx="1" fill="#737d72" opacity=".6"/>
+        <rect x="151" y="126" width="45" height="3" rx="1.5" fill="#8b9385" opacity=".55"/>
+        <path d="M126 176h100l11 10H116Z" fill="#b1a68d"/>
+        <g fill="#ba7145"><path d="M27 185l12-4 4 7-15 4Z"/><path d="M55 172l9-7 8 3-7 10Z"/><path d="M277 183l12-6 7 8-13 5Z"/><path d="M254 195l11-3 4 6-13 3Z"/></g>
+        <rect x="31" y="29" width="135" height="27" rx="4" fill="#f0ede3" opacity=".9"/>
+        <text x="40" y="47" fill="#59675b" font-size="11" font-weight="600" font-family="Arial,sans-serif">よりみち墓参り</text>
+        <rect x="27" y="173" width="108" height="22" rx="4" fill="#e5e1d3" opacity=".9"/>
+        <text x="35" y="187" fill="#566456" font-size="8" font-family="Arial,sans-serif">落ち葉を集める   0/12</text>
+       </svg>
+       <figcaption class="visually-hidden">実際のスクリーンショットではなく、Unity作品の内容をもとにした仮モックです。</figcaption>
+      </figure>
+      <div class="project-top"><h3 class="project-title">また、会いに。</h3><span class="project-n">04 / Unity</span></div>
+      <p class="project-desc">秋の墓地で落ち葉拾いや掃除、お供えを行う、静かな3Dお墓参りゲーム。</p>
+      <div class="meta"><span>Unity</span><span>C#</span><span>3D Game</span></div>
+      <details><summary>仕組みを見る</summary><div class="detail-copy"><p><strong>コンセプト：</strong>掃除・花・線香・ひと息といった手入れを、時間制限や得点なしで体験する。</p><p><strong>制作：</strong>Unityで秋の墓地とインタラクションを実装したPC向けプロトタイプ。</p></div></details>
+     </article>
+    </div>
+   </section>
+   <section class="contact" id="contact" aria-labelledby="contact-heading">
+    <h2 class="visually-hidden" id="contact-heading">Contact</h2>
+    <div class="contact-links" aria-label="SNSとプロフィールのリンク">
+     <a class="contact-link" href="https://github.com/cloud0327" target="_blank" rel="noopener noreferrer" aria-label="GitHub（新しいタブで開く）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.8-1.33-3.8-1.33-.51-1.29-1.25-1.64-1.25-1.64-1.02-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15 1 .1 1.58-.74 1.8-1.06-.79-.09-1.62-.37-2.25-.84-2.08-1.54-1.86-4.53-.37-5.92-.22-.66-.13-1.44.22-2.12 0 0 .9-.29 2.94 1.12a10.12 10.12 0 0 1 5.35 0c2.04-1.41 2.94-1.12 2.94-1.12.35.68.44 1.46.22 2.12 1.49 1.39 1.71 4.38-.37 5.92-.63.47-1.46.75-2.25.84.24.21.46.52.58.96.15.55.18 1.27.18 2.18v2.62c0 .3.2.65.78.54A11.2 11.2 0 0 0 12 .8Z"/></svg>
+      <span class="contact-link-name">GitHub ↗</span>
+     </a>
+     <a class="contact-link" href="https://x.com/Sen4327" target="_blank" rel="noopener noreferrer" aria-label="X（新しいタブで開く）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.95 2h3.04l-6.64 7.58L23.17 22h-6.12l-4.8-6.74L6.35 22H3.29l7.1-8.12L.83 2h6.28l4.34 6.1L18.95 2Zm-1.07 18h1.69L6.2 3.9H4.4L17.88 20Z"/></svg>
+      <span class="contact-link-name">X ↗</span>
+     </a>
+     <a class="contact-link" href="https://www.linkedin.com/in/%E7%80%AC%E5%90%8D-%E4%B8%AD%E5%B0%BE-01864a406/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn（新しいタブで開く）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 2H3.55A1.55 1.55 0 0 0 2 3.55v16.9A1.55 1.55 0 0 0 3.55 22h16.9A1.55 1.55 0 0 0 22 20.45V3.55A1.55 1.55 0 0 0 20.45 2ZM7.93 18.68H4.98V9.19h2.95v9.49ZM6.46 7.89a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42ZM19.02 18.68h-2.95v-4.62c0-1.1-.02-2.51-1.53-2.51-1.53 0-1.77 1.2-1.77 2.43v4.7H9.82V9.19h2.83v1.3h.04a3.1 3.1 0 0 1 2.79-1.53c2.98 0 3.54 1.96 3.54 4.5v5.22Z"/></svg>
+      <span class="contact-link-name">LinkedIn ↗</span>
+     </a>
+    </div>
+   </section>
+  </main>
+  <footer><span>© 2026 Portfolio</span><div class="footer-signoff"><span>Built with care.</span></div></footer>
+  <!-- The bottom-right of the actual page turns over a diagonal hinge. -->
+  <div class="page-curl" id="page-curl">
+   <svg class="page-curl-visual" id="page-curl-visual" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+     <linearGradient id="curl-paper-light" x1="0%" y1="0%" x2="95%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="38%" stop-color="#f9faf5"/>
+      <stop offset="66%" stop-color="#e7e9e2"/><stop offset="84%" stop-color="#bfc4b9"/>
+      <stop offset="100%" stop-color="#fcfcf8"/>
+     </linearGradient>
+     <linearGradient id="curl-roll-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#929b90" stop-opacity=".39"/>
+      <stop offset="27%" stop-color="#e8ece4" stop-opacity=".48"/>
+      <stop offset="62%" stop-color="#ffffff" stop-opacity=".8"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+     </linearGradient>
+     <linearGradient id="curl-side-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#aab2a7" stop-opacity=".35"/>
+      <stop offset="26%" stop-color="#ffffff" stop-opacity=".26"/>
+      <stop offset="73%" stop-color="#f8f9f5" stop-opacity=".02"/>
+      <stop offset="100%" stop-color="#656f64" stop-opacity=".25"/>
+     </linearGradient>
+     <filter id="curl-shadow-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="11"/></filter>
+    </defs>
+    <path class="curl-void" id="curl-void"/>
+    <path class="curl-cast" id="curl-cast"/>
+    <path class="curl-surface" id="curl-surface"/>
+    <path class="curl-shade" id="curl-shade"/>
+    <path class="curl-roll" id="curl-roll"/>
+    <path class="curl-paper-edge" id="curl-paper-edge"/>
+    <path class="curl-rim" id="curl-rim"/>
+    <path class="curl-edge-glint" id="curl-edge-glint"/>
+   </svg>
+   <div class="page-curl-note" id="paper-fold-note" aria-hidden="true">
+    <span class="fold-date fold-date-desktop">2026.10.17 / NOTE</span>
+    <span class="fold-date fold-date-mobile">10.17</span>
+    <span class="fold-heading">最近のこと。</span>
+    <span class="fold-copy fold-copy-desktop">作品を整理しつつ、<br>ポートフォリオを更新中。<br>次の案も考えています。</span>
+    <span class="fold-copy fold-copy-mobile">作品整理中。<br>サイト更新中。</span>
+   </div>
+   <button class="page-curl-action" id="paper-secret-trigger" type="button"
+    title="紙の角に書かれた近況" aria-label="紙の右下をめくって近況を読む" aria-pressed="false"></button>
+  </div>
+ </div>
+
+
+ <script>
+ (function () {
+   'use strict';
+   const splash = document.getElementById('visit-splash');
+   const splashSkip = document.getElementById('visit-splash-skip');
+   const root = document.documentElement;
+   const site = document.querySelector('.page');
+   let timer = null;
+   let finish = null;
+   splash.setAttribute('aria-hidden', root.classList.contains('halloween-available') ? 'false' : 'true');
+
+   function showSeasonWelcome() {
+     // Automatically present the seasonal greeting during October, without
+     // activating the theme or ghost. It is short and always skippable.
+     if (!root.classList.contains('halloween-available')) return;
+     let finished = false;
+     site.inert = true;
+     splash.setAttribute('aria-hidden','false');
+     root.classList.remove('visit-splash-leaving');
+     root.classList.add('visit-splash-active');
+     finish = (immediate=false) => {
+       if (finished) return;
+       finished = true;
+       window.clearTimeout(timer);
+       root.classList.add('visit-splash-leaving');
+       const close = () => {
+         root.classList.remove('visit-splash-active', 'visit-splash-leaving');
+         splash.setAttribute('aria-hidden','true');
+         site.inert = false;
+         finish = null;
+       };
+       if (immediate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) close();
+       else window.setTimeout(close,220);
+     };
+     timer = window.setTimeout(() => finish(),1250);
+   }
+   // Greeting is independent of the pumpkin; theme and ghost remain opt-in.
+   showSeasonWelcome();
+   splashSkip.addEventListener('click', () => finish?.(true));
+   document.addEventListener('keydown', e => {
+     if (e.key === 'Escape' && finish) { e.preventDefault(); finish(true); }
+   });
+ })();
+ </script>
+ <script>
+ (function () {
+   'use strict';
+   // Clicking the pumpkin toggles a subtle Halloween palette. No extra game screen.
+   if (!document.documentElement.classList.contains('halloween-available')) return;
+   const trigger = document.getElementById('season-trigger');
+   const bloom = document.getElementById('theme-bloom');
+   const root = document.documentElement;
+   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+   let cleanup = null;
+   function updateLabel() {
+     const active = root.classList.contains('halloween-theme');
+     const label = active ? '通常カラーに戻す' : 'ハロウィンカラーに切り替える';
+     trigger.setAttribute('aria-label',label);
+     trigger.setAttribute('title',label);
+     trigger.setAttribute('aria-pressed',String(active));
+   }
+   trigger.addEventListener('click',()=>{
+     const enabled = !root.classList.contains('halloween-theme');
+     const rect = trigger.getBoundingClientRect();
+     bloom.style.setProperty('--bloom-x',`${rect.left + rect.width/2}px`);
+     bloom.style.setProperty('--bloom-y',`${rect.top + rect.height/2}px`);
+     root.classList.toggle('halloween-theme', enabled);
+     root.classList.toggle('halloween-active', enabled);
+     // Announce the explicit opt-in/out to seasonal features. No remembered state.
+     window.dispatchEvent(new CustomEvent('portfolio:seasonchange', {detail:{enabled}}));
+     updateLabel();
+     if (cleanup !== null) window.clearTimeout(cleanup);
+     bloom.classList.remove('is-playing');
+     trigger.classList.remove('is-sparking');
+     if (!reducedMotion.matches) {
+       void bloom.offsetWidth;
+       bloom.classList.add('is-playing');
+       trigger.classList.add('is-sparking');
+       cleanup=window.setTimeout(()=>{
+         bloom.classList.remove('is-playing');
+         trigger.classList.remove('is-sparking');
+         cleanup=null;
+       },800);
+     }
+   });
+   updateLabel();
+ })();
+ </script>
+ <script>
+ (function () {
+   'use strict';
+   // Multiple ghost spawn points are prepared across the page.
+   // On each page load, a random subset is chosen so they do not always appear in the same places.
+   const root = document.documentElement;
+   if (!root.classList.contains('halloween-available')) return;
+   const page = document.querySelector('.page');
+   const playground = document.getElementById('ghost-playground');
+   const flashlight = document.getElementById('ghost-flashlight');
+   const hitEffect = document.getElementById('ghost-hit-effect');
+   const ghostSvg = `<svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M7 27V17C7 10 11 5 17 5S27 10 27 17V27L22 24L17 28L12 24L7 27Z" fill="#fffefa"/><g class="ghost-eyes-alive"><circle cx="13.3" cy="16.5" r="1.1" fill="#647364" stroke="none"/><circle cx="20.7" cy="16.5" r="1.1" fill="#647364" stroke="none"/><path d="M15.3 21Q17 22.5 18.7 21"/></g><g class="ghost-eyes-down"><path d="m11.3 15 4 4m0-4-4 4m7.4-4 4 4m0-4-4 4M15.3 23h3.4"/></g></svg>`;
+   const ghosts = [];
+   const defeated = new Set();
+   let chosenIds = [];
+   let lastGhostSetMemory = '';
+
+   const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+   const shuffle = arr => {
+     const copy = [...arr];
+     for (let i = copy.length - 1; i > 0; i--) {
+       const j = Math.floor(Math.random() * (i + 1));
+       [copy[i], copy[j]] = [copy[j], copy[i]];
+     }
+     return copy;
+   };
+   const relRect = (el, pageRect) => {
+     const r = el.getBoundingClientRect();
+     return { left:r.left - pageRect.left, top:r.top - pageRect.top, width:r.width, height:r.height };
+   };
+   function buildCandidates() {
+     const pageRect = page.getBoundingClientRect();
+     const pageHeight = page.scrollHeight;
+     const pageWidth = page.clientWidth;
+     const push = (list, id, x, y) => list.push({ id, x:clamp(Math.round(x), 2, pageWidth - 48), y:clamp(Math.round(y), 4, pageHeight - 52) });
+     const list = [];
+     const profile = document.querySelector('.profile-table');
+     const cards = [...document.querySelectorAll('.discipline-card')];
+     const history = document.querySelector('.history');
+     const projects = [...document.querySelectorAll('.project')];
+     const contact = document.getElementById('contact');
+     const footer = document.querySelector('footer');
+
+     if (profile) {
+       const r = relRect(profile, pageRect);
+       push(list, 'profile-right', r.left + r.width - 50, r.top + 14);
+       push(list, 'profile-left', r.left + 4, r.top + r.height - 54);
+     }
+     cards.forEach((card, i) => {
+       const r = relRect(card, pageRect);
+       push(list, `card-${i}-top`, r.left + r.width - 50, r.top + 10);
+       push(list, `card-${i}-bottom`, r.left + 6, r.top + r.height - 54);
+     });
+     if (history) {
+       const r = relRect(history, pageRect);
+       push(list, 'history-left', r.left + 6, r.top + 58);
+       push(list, 'history-right', r.left + r.width - 50, r.top + 136);
+       push(list, 'history-bottom', r.left + r.width * 0.58, r.top + r.height - 48);
+     }
+     projects.forEach((project, i) => {
+       const r = relRect(project, pageRect);
+       push(list, `project-${i}-a`, r.left + r.width - 50, r.top + 26);
+       push(list, `project-${i}-b`, r.left + 6, r.top + r.height - 54);
+     });
+     if (contact) {
+       const r = relRect(contact, pageRect);
+       push(list, 'contact-right', r.left + r.width - 50, r.top + 8);
+       push(list, 'contact-left', r.left + 8, r.top + 52);
+     }
+     if (footer) {
+       const r = relRect(footer, pageRect);
+       push(list, 'footer-left', r.left + 6, r.top - 10);
+     }
+     return list;
+   }
+   function chooseSpawnIds(candidates) {
+     // At most two ghosts per visit on both desktop and mobile.
+     // Prefer two different vertical areas so they feel like separate discoveries.
+     const count = Math.min(2, candidates.length);
+     if (count === 0) return [];
+     const previous = (() => { try { return sessionStorage.getItem('portfolio:lastGhostSet') || ''; } catch (_) { return lastGhostSetMemory; } })();
+     const minY = Math.min(...candidates.map(item => item.y));
+     const maxY = Math.max(...candidates.map(item => item.y));
+     const separation = (maxY - minY) * .28;
+     for (let tries = 0; tries < 20; tries++) {
+       const shuffled = shuffle(candidates);
+       const first = shuffled[0];
+       const distant = shuffled.filter(item => Math.abs(item.y - first.y) >= separation);
+       const second = (distant.length ? distant : shuffled.slice(1))[0];
+       const picked = (count === 1 ? [first] : [first, second]).map(item => item.id).sort();
+       const key = picked.join('|');
+       if (key !== previous || candidates.length <= count) {
+         lastGhostSetMemory = key;
+         try { sessionStorage.setItem('portfolio:lastGhostSet', key); } catch (_) {}
+         return picked;
+       }
+     }
+     const fallback = shuffle(candidates).slice(0, count).map(item => item.id).sort();
+     lastGhostSetMemory = fallback.join('|');
+     try { sessionStorage.setItem('portfolio:lastGhostSet', lastGhostSetMemory); } catch (_) {}
+     return fallback;
+   }
+   function candidateMap() {
+     const map = new Map();
+     buildCandidates().forEach(item => map.set(item.id, item));
+     return map;
+   }
+   function layoutGhosts() {
+     const map = candidateMap();
+     if (!chosenIds.length) chosenIds = chooseSpawnIds([...map.values()]);
+     if (!ghosts.length) {
+       chosenIds.forEach(id => {
+         const point = map.get(id);
+         if (!point) return;
+         const btn = document.createElement('button');
+         btn.className = 'ghost-peek is-spawned';
+         btn.type = 'button';
+         btn.dataset.spawnId = id;
+         btn.setAttribute('aria-label', 'おばけを懐中電灯で退治する');
+         btn.innerHTML = ghostSvg;
+         btn.addEventListener('click', onGhostTap);
+         ghosts.push(btn);
+         playground.appendChild(btn);
+       });
+     }
+     ghosts.forEach(btn => {
+       const point = map.get(btn.dataset.spawnId);
+       if (!point) return;
+       btn.style.left = `${point.x}px`;
+       btn.style.top = `${point.y}px`;
+     });
+     syncGhostState();
+   }
+   function syncGhostState() {
+     const active = root.classList.contains('halloween-active');
+     ghosts.forEach(btn => {
+       const down = defeated.has(btn.dataset.spawnId);
+       btn.classList.toggle('is-defeated', down);
+       btn.disabled = down;
+       btn.tabIndex = active && !down ? 0 : -1;
+       btn.setAttribute('aria-label', down ? '退治済み。再読み込みすると復活します' : 'おばけを懐中電灯で退治する');
+     });
+     if (!active) {
+       flashlight.classList.remove('is-active');
+       flashlight.hidden = true;
+       hitEffect.classList.remove('is-visible');
+     }
+   }
+   function onGhostTap(event) {
+     const btn = event.currentTarget;
+     if (defeated.has(btn.dataset.spawnId) || !root.classList.contains('halloween-active')) return;
+     defeated.add(btn.dataset.spawnId);
+
+     const pageBox = page.getBoundingClientRect();
+     const ghostBox = btn.getBoundingClientRect();
+     const ghostX = ghostBox.left + ghostBox.width / 2;
+     const ghostY = ghostBox.top + ghostBox.height / 2;
+     // Finish very close to the ghost's upper-right, instead of stopping in the outer gutter.
+     // On narrow screens, let only the flashlight's very end extend beyond the edge.
+     const flashX = clamp(ghostX + (window.innerWidth <= 640 ? 40 : 58), 4, window.innerWidth - 28);
+     const flashY = clamp(ghostY - 65, 4, window.innerHeight - 34);
+     const originX = flashX + 6;
+     const originY = flashY + 15;
+     const dx = ghostX - originX;
+     const dy = ghostY - originY;
+     const distance = Math.hypot(dx, dy);
+     const angle = Math.atan2(dy, dx) * 180 / Math.PI - 180;
+
+     flashlight.style.setProperty('--flash-x', `${flashX}px`);
+     flashlight.style.setProperty('--flash-y', `${flashY}px`);
+     flashlight.style.setProperty('--beam-length', `${Math.ceil(distance + 18)}px`);
+     flashlight.style.setProperty('--beam-half-height', `${Math.min(47, Math.max(18, distance * .22))}px`);
+     flashlight.style.setProperty('--beam-angle', `${angle}deg`);
+     flashlight.hidden = false;
+     flashlight.classList.add('is-active');
+
+     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+     window.setTimeout(() => {
+       btn.classList.add('is-defeated');
+       btn.setAttribute('aria-label', '退治済み。再読み込みすると復活します');
+       btn.disabled = true;
+       btn.tabIndex = -1;
+       const hitLeft = clamp(ghostBox.left - pageBox.left - 70, 4, page.clientWidth - 124);
+       const hitTop = clamp(ghostBox.top - pageBox.top - 54, 4, page.scrollHeight - 84);
+       hitEffect.style.left = `${Math.round(hitLeft)}px`;
+       hitEffect.style.top = `${Math.round(hitTop)}px`;
+       if (root.classList.contains('halloween-active')) {
+         hitEffect.classList.add('is-visible');
+         window.setTimeout(() => hitEffect.classList.remove('is-visible'), reduced ? 700 : 920);
+       }
+       window.setTimeout(() => btn.classList.add('is-gone'), reduced ? 90 : 240);
+     }, reduced ? 0 : 660);
+     window.setTimeout(() => {
+       flashlight.classList.remove('is-active');
+       flashlight.hidden = true;
+     }, reduced ? 220 : 1400);
+   }
+   window.addEventListener('portfolio:seasonchange', e => {
+     if (e.detail.enabled && !chosenIds.length) layoutGhosts();
+     syncGhostState();
+   });
+   window.addEventListener('resize', () => { if (chosenIds.length) layoutGhosts(); });
+   layoutGhosts();
+   syncGhostState();
+ })();
+ </script>
+ <script>
+ (function () {
+   // Page-turning geometry: a triangular sheet corner is rotated around the crease
+   // (not resized). The projected tip shrinks, crosses the hinge, then unfolds
+   // as the backside; highlights and the soft cast shadow follow the fold angle.
+   const curl = document.getElementById('page-curl');
+   const action = document.getElementById('paper-secret-trigger');
+   const sheet = document.querySelector('.page');
+   const curlTarget = document.getElementById('contact');
+   const note = document.getElementById('paper-fold-note');
+   const nodes = Object.fromEntries(['void','cast','surface','shade','roll','rim','edge-glint','paper-edge'].map(n =>
+     [n,document.getElementById('curl-'+n)]));
+   const prefersStill = window.matchMedia('(prefers-reduced-motion: reduce)');
+   let open = false, progress = 0, frame = null, fromTime = 0, fromValue = 0, toValue = 0;
+   const mix = (a,b,t) => a+(b-a)*t;
+   const clamp = (v,low,high) => Math.min(high,Math.max(low,v));
+   const ease = t => 1-Math.pow(1-t,3);
+   const xy = (x,y) => `${x.toFixed(2)} ${y.toFixed(2)}`;
+
+   function sizeCurl() {
+     const pageRect=sheet.getBoundingClientRect(), targetRect=curlTarget.getBoundingClientRect();
+     const width=pageRect.width;
+     const wanted=Math.round(pageRect.bottom-targetRect.top+30);
+     const height=Math.max(390,wanted);
+     curl.style.setProperty('--curl-height',`${height}px`);
+     return {width,height};
+   }
+
+   function render(t) {
+     const {width:w,height:h}=sizeCurl();
+     const svg=document.getElementById('page-curl-visual');
+     svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+     const expanded=ease(t);
+     // The crease's two ends slide across the page but its flap also changes angle.
+     const maxEdge=Math.min(w*.92,h*.94);
+     const initialFold=w<500?Math.min(100,w*.27):61;
+     const side=mix(initialFold,maxEdge,expanded);
+     const dx=side,dy=side;
+     // The corner first rises toward a near edge-on profile, before folding down.
+     const theta=(t<.23? mix(158,69,ease(t/.23)) : mix(69,153,ease((t-.23)/.77))) *Math.PI/180;
+     const c=Math.cos(theta), lift=Math.sin(theta);
+     const A={x:w-dx,y:h}, B={x:w,y:h-dy};
+     const along={x:dx/2,y:-dy/2}, across={x:dx/2,y:dy/2};
+     const C={x:A.x+along.x+across.x*c, y:A.y+along.y+across.y*c};
+     const mid={x:(A.x+B.x)/2,y:(A.y+B.y)/2};
+     // Subtle bowing along the rolled edge is what makes it read as flexible paper.
+     // A broad non-linear bend: the fold line bows as the page rises.
+     const curve=Math.min(95,side*.155)*(.35+.65*lift);
+     const hingeCtrl={x:mid.x-curve,y:mid.y-curve};
+     const curvePath=`M ${xy(A.x,A.y)} Q ${xy(hingeCtrl.x,hingeCtrl.y)} ${xy(B.x,B.y)}`;
+     const tipCtr1={x:mix(B.x,C.x,.27)-curve*.35,y:mix(B.y,C.y,.27)-curve*.20};
+     const tipCtr2={x:mix(B.x,C.x,.83)-curve*.10,y:mix(B.y,C.y,.83)-curve*.72};
+     const tipCtr3={x:mix(C.x,A.x,.27)-curve*.60,y:mix(C.y,A.y,.27)-curve*.35};
+     const tipCtr4={x:mix(C.x,A.x,.81)-curve*.68,y:mix(C.y,A.y,.81)+curve*.12};
+     const flap=`${curvePath} C ${xy(tipCtr1.x,tipCtr1.y)} ${xy(tipCtr2.x,tipCtr2.y)} ${xy(C.x,C.y)} C ${xy(tipCtr3.x,tipCtr3.y)} ${xy(tipCtr4.x,tipCtr4.y)} ${xy(A.x,A.y)} Z`;
+     nodes.surface.setAttribute('d',flap);
+     // Wavy light falloff over the folded body, ending in a softly rolled free tip.
+     const innerLeft={x:mix(A.x,C.x,.17)-curve*.4,y:mix(A.y,C.y,.17)-curve*.1};
+     const innerRight={x:mix(B.x,C.x,.17)-curve*.4,y:mix(B.y,C.y,.17)-curve*.1};
+     nodes.shade.setAttribute('d',`M ${xy(innerLeft.x,innerLeft.y)} Q ${xy(mid.x-curve*1.25,mid.y-curve*1.25)} ${xy(innerRight.x,innerRight.y)} C ${xy(tipCtr1.x,tipCtr1.y)} ${xy(tipCtr2.x,tipCtr2.y)} ${xy(C.x,C.y)} C ${xy(tipCtr3.x,tipCtr3.y)} ${xy(tipCtr4.x,tipCtr4.y)} ${xy(innerLeft.x,innerLeft.y)} Z`);
+     // The uncovered corner of the original surface is visible below the lifted sheet.
+     nodes.void.setAttribute('d',`${curvePath} L ${xy(w,h)} Z`);
+     // Shadow follows the lifted paper; at 90 degrees the page rises highest.
+     const castX=4+lift*15,castY=5+lift*16;
+     nodes.cast.setAttribute('d',`${curvePath} L ${xy(C.x+castX,C.y+castY)} Z`);
+     // A narrow curved strip mimics the roll between the flat page and the turned backside.
+     const rollWidth=3+Math.min(64,side*.11)*(.4+.6*lift);
+     const innerA={x:A.x-rollWidth*.65,y:A.y-rollWidth*.65};
+     const innerB={x:B.x-rollWidth*.65,y:B.y-rollWidth*.65};
+     const rollCtrl={x:hingeCtrl.x-rollWidth*.85,y:hingeCtrl.y-rollWidth*.85};
+     nodes.roll.setAttribute('d',`${curvePath} L ${xy(innerB.x,innerB.y)} Q ${xy(rollCtrl.x,rollCtrl.y)} ${xy(innerA.x,innerA.y)} Z`);
+     nodes.rim.setAttribute('d',curvePath);
+     nodes['edge-glint'].setAttribute('d',`M ${xy(A.x+1,A.y-2)} Q ${xy(hingeCtrl.x+3,hingeCtrl.y-3)} ${xy(B.x-2,B.y+1)}`);
+     nodes['paper-edge'].setAttribute('d',`M ${xy(B.x,B.y)} Q ${xy(tipCtr1.x,tipCtr1.y)} ${xy(C.x,C.y)} Q ${xy(tipCtr4.x,tipCtr4.y)} ${xy(A.x,A.y)}`);
+     // A small, actual back-of-paper annotation; no dialog or second card.
+     const fontMobile=w<500;
+     const noteWidth=fontMobile?clamp(dx*.38,100,132):clamp(dx*.36,96,215);
+     note.style.width=`${noteWidth}px`;
+     note.style.left=`${Math.max(8,w-dx*(fontMobile?.91:.85))}px`;
+     note.style.top=`${Math.max(0,h-dy*(fontMobile?.92:.95))}px`;
+     note.style.opacity=(t>.78 ? Math.min(1,(t-.78)/.17) : 0).toString();
+     // Restrict the clickable region to the actual corner rather than covering About.
+     const hit=[A,C,B,{x:w,y:h}].map(p=>`${clamp(p.x/w*100,0,100).toFixed(2)}% ${clamp(p.y/h*100,0,100).toFixed(2)}%`);
+     // Use the outline of both the turned flap and original lower-right corner.
+     action.style.clipPath=(t>.02?`polygon(${hit.join(',')})`:'none');
+   }
+
+   function animateTo(value) {
+     if(frame!==null) cancelAnimationFrame(frame);
+     fromValue=progress; toValue=value;
+     const duration=prefersStill.matches?0:920*Math.abs(value-fromValue);     const start=performance.now();
+     const step=now=>{
+       const t=duration?clamp((now-start)/duration,0,1):1;
+       progress=mix(fromValue,toValue,t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2);
+       render(progress);
+       if(t<1)frame=requestAnimationFrame(step);
+       else frame=null;
+     };
+     frame=requestAnimationFrame(step);
+   }
+   function setOpen(next) {
+     open=next;
+     curl.classList.toggle('is-open',open);
+     action.setAttribute('aria-pressed',String(open));
+     note.setAttribute('aria-hidden',String(!open));
+     action.setAttribute('aria-label',open?'紙の角を戻す。近況：ポートフォリオを調整中。':'紙の右下をめくって近況を読む');
+     animateTo(open?1:0);
+   }
+   action.addEventListener('click',()=>setOpen(!open));
+   document.addEventListener('keydown', e=>{
+     if(e.key==='Escape'&&open) {e.preventDefault();setOpen(false);action.focus({preventScroll:true});}
+   });
+   window.addEventListener('resize',()=>render(progress));
+   render(0);
+
+ })();
+ </script>
+</body>
+</html>
