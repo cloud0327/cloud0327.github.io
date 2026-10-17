@@ -323,7 +323,7 @@
       .page-curl-note { font-size:12px; line-height:1.6; }
       .page-curl-note .fold-date { font-size:10px; margin-bottom:5px; }
       .page-curl-note .fold-heading { font-size:15px; margin-bottom:5px; }
-      .page-curl-action { width:166px; height:110px; }
+      .page-curl-action { width:126px; height:92px; }
       .page-curl:not(.is-open) .page-curl-action::before {
         content:'↘ めくる'; position:absolute; top:12px; right:91px;
         white-space:nowrap; font-size:11px; line-height:1.3;
@@ -941,8 +941,9 @@
      svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
      const expanded=ease(t);
      // The crease's two ends slide across the page but its flap also changes angle.
-     const maxEdge=Math.min(w*.92,h*.94);
-     const initialFold=w<500?Math.min(100,w*.27):61;
+     const mobileView = w < 500;
+     const maxEdge=mobileView ? Math.min(w*.72,h*.64) : Math.min(w*.92,h*.94);
+     const initialFold=mobileView ? Math.min(78,w*.20) : 61;
      const side=mix(initialFold,maxEdge,expanded);
      const dx=side,dy=side;
      // The corner first rises toward a near edge-on profile, before folding down.
