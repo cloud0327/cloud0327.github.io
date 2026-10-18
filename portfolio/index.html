@@ -86,22 +86,26 @@
     .tag { display:inline-flex; align-items:center; font-size:12px; border:1px solid #dfe2dc; border-radius:5px; color:#505b51; padding:8px 10px; }
     .contact { margin-top:106px; border-top:1px solid var(--line); padding-top:26px; }
     /* Social links on the left, direct-contact action at the right. */
+    /* Clickable brand-icon surfaces on the left; a clear email action on the right. */
     .contact-links { display:flex; align-items:center; justify-content:space-between; gap:10px; min-width:0; }
-    .contact-social-links { display:flex; align-items:center; gap:22px; flex:0 1 auto; min-width:0; }
-    .contact-link { display:inline-flex; align-items:center; gap:9px; padding:7px 0; font-size:13px; font-weight:600; letter-spacing:.015em; color:var(--accent); white-space:nowrap; }
-    .contact-link svg { display:block; width:19px; height:19px; flex:none; fill:currentColor; }
-    .contact-link:hover { text-decoration:none; }
-    .contact-link:hover .contact-link-name { text-decoration:underline; text-underline-offset:5px; }
-    .contact-cta { display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; margin-left:auto; min-height:42px; padding:10px 18px; border:1px solid #c0d1c2; border-radius:11px; background:#eaf1e9; color:#365741; font-size:13px; line-height:1.4; font-weight:650; letter-spacing:.01em; text-decoration:none; white-space:nowrap; transition:background-color .2s ease,color .2s ease,border-color .2s ease; }
-    .contact-cta:hover { background:#486853; border-color:#486853; color:#fff; text-decoration:none; }
-    .halloween-theme .contact-cta { background:#f0e6fb; border-color:#cdb0e7; color:#7041a1; }
-    .halloween-theme .contact-cta:hover { background:#7041a1; border-color:#7041a1; color:#fff; }
+    .contact-social-links { display:flex; align-items:center; gap:7px; flex:0 1 auto; min-width:0; }
+    .contact-link { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; flex:0 0 44px; border-radius:11px; color:var(--accent); text-decoration:none; transition:background-color .2s ease,color .2s ease; }
+    .contact-link svg { display:block; width:25px; height:25px; flex:none; fill:currentColor; }
+    .contact-link:hover { background:#e9f0e9; text-decoration:none; }
+    .contact-link:focus-visible, .contact-cta:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+    .contact-cta { display:inline-flex; align-items:center; justify-content:center; gap:9px; flex:0 0 auto; margin-left:auto; min-height:44px; padding:10px 17px; border:1px solid #41684b; border-radius:12px; background:#41684b; color:#fff; font-size:13px; line-height:1.4; font-weight:650; letter-spacing:.015em; text-decoration:none; white-space:nowrap; transition:background-color .2s ease,color .2s ease,border-color .2s ease; }
+    .contact-cta svg { display:block; width:19px; height:19px; flex:none; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .contact-cta:hover { background:#2c4f36; border-color:#2c4f36; color:#fff; text-decoration:none; }
+    .halloween-theme .contact-link:hover { background:#f0e6fb; }
+    .halloween-theme .contact-cta { background:#7041a1; border-color:#7041a1; color:#fff; }
+    .halloween-theme .contact-cta:hover { background:#573281; border-color:#573281; color:#fff; }
     @media (max-width:640px) {
       .contact-links { gap:8px; }
-      .contact-social-links { gap:12px; }
-      .contact-link { gap:6px; font-size:11px; }
-      .contact-link svg { width:17px; height:17px; }
-      .contact-cta { min-height:40px; padding:9px 11px; border-radius:10px; font-size:11px; }
+      .contact-social-links { gap:4px; }
+      .contact-link { width:40px; height:40px; flex-basis:40px; border-radius:10px; }
+      .contact-link svg { width:23px; height:23px; }
+      .contact-cta { min-height:40px; padding:9px 12px; border-radius:10px; gap:7px; font-size:12px; }
+      .contact-cta svg { width:17px; height:17px; }
     }
     footer { border-top:1px solid var(--line); margin-top:100px; padding:25px 0 35px; display:flex; justify-content:space-between; color:#626b61; font-size:12px; }
     .visually-hidden { position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
@@ -645,16 +649,14 @@
     <h2 class="visually-hidden" id="contact-heading">Contact</h2>
     <div class="contact-links" aria-label="SNSと直接連絡するリンク">
      <div class="contact-social-links" aria-label="SNSリンク">
-<a class="contact-link" href="https://github.com/cloud0327" target="_blank" rel="noopener noreferrer" aria-label="GitHub（新しいタブで開く）">
+<a class="contact-link" href="https://github.com/cloud0327" target="_blank" rel="noopener noreferrer" aria-label="GitHub（新しいタブで開く）" title="GitHub">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-      <span class="contact-link-name">GitHub ↗</span>
      </a>
-<a class="contact-link" href="https://x.com/sen4dev" target="_blank" rel="noopener noreferrer" aria-label="X（新しいタブで開く）">
+<a class="contact-link" href="https://x.com/sen4dev" target="_blank" rel="noopener noreferrer" aria-label="X（新しいタブで開く）" title="X">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg>
-      <span class="contact-link-name">X ↗</span>
      </a>
      </div>
-     <a class="contact-cta" href="mailto:senasura03273@gmail.com" aria-label="メールで直接連絡する">Direct Contact</a>
+     <a class="contact-cta" href="mailto:senasura03273@gmail.com" aria-label="メールアプリでメールを作成する"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 7 7.3 5.6a2 2 0 0 0 2.4 0L20.5 7"/></svg><span>メールを送る</span></a>
     </div>
    </section>
   </main>
