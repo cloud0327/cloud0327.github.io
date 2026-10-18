@@ -407,7 +407,6 @@
       border:0; padding:0; margin:0; cursor:pointer; pointer-events:auto;
       -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
     .page-curl.is-open .page-curl-action { inset:0; width:100%; height:100%; }
-    .page-curl-action::before { content:''; }
 
     .page-curl-action:focus-visible { outline:0; filter:drop-shadow(0 0 4px var(--accent)); }
     .halloween-theme .page-curl .curl-void { fill:#f9f9f6; }
@@ -416,16 +415,12 @@
       .ghost-peek { right:9px; }
       .ghost-hit-effect { right:40px; top:-72px; width:107px; height:71px; }
       footer { padding-right:62px; }
-      .page-curl-note { font-size:12px; line-height:1.6; }
-      .page-curl-note .fold-date { font-size:10px; margin-bottom:5px; }
-      .page-curl-note .fold-heading { font-size:15px; margin-bottom:5px; }
+      /* Reserve a quiet area under Contact so the opened corner never covers links or text. */
+      .page { padding-bottom:260px; }
+      .page-curl-note { font-size:11px; line-height:1.4; }
+      .page-curl-note .fold-date { font-size:9px; margin-bottom:3px; }
+      .page-curl-note .fold-heading { font-size:13px; margin-bottom:3px; }
       .page-curl-action { width:126px; height:92px; }
-      .page-curl:not(.is-open) .page-curl-action::before {
-        content:'↘ flip'; position:absolute; top:12px; right:91px;
-        white-space:nowrap; font-size:11px; line-height:1.3;
-        letter-spacing:.02em; color:#69776a; font-weight:550;
-      }
-      .halloween-theme .page-curl-action::before { color:#8f705a; }
       .page-curl-note .fold-copy-desktop, .page-curl-note .fold-date-desktop { display:none; }
       .page-curl-note .fold-copy-mobile, .page-curl-note .fold-date-mobile { display:block; }
     }
@@ -1079,12 +1074,20 @@
      nodes['edge-glint'].setAttribute('d',`M ${xy(A.x+1,A.y-2)} Q ${xy(hingeCtrl.x+3,hingeCtrl.y-3)} ${xy(B.x-2,B.y+1)}`);
      nodes['paper-edge'].setAttribute('d',`M ${xy(B.x,B.y)} Q ${xy(tipCtr1.x,tipCtr1.y)} ${xy(C.x,C.y)} Q ${xy(tipCtr4.x,tipCtr4.y)} ${xy(A.x,A.y)}`);
      // A small, actual back-of-paper annotation; no dialog or second card.
+     // Position inside the exposed lower-right paper, beyond the diagonal fold.
+     // Measure the actual text block so it cannot spill over the bottom edge.
      const fontMobile=w<500;
-     const noteWidth=fontMobile?clamp(dx*.38,100,132):clamp(dx*.36,96,215);
+     const noteWidth=fontMobile?clamp(w*.30,90,110):clamp(side*.35,150,215);
      note.style.width=`${noteWidth}px`;
-     note.style.left=`${Math.max(8,w-dx*(fontMobile?.91:.85))}px`;
-     note.style.top=`${Math.max(0,h-dy*(fontMobile?.92:.95))}px`;
-     note.style.opacity=(t>.78 ? Math.min(1,(t-.78)/.17) : 0).toString();
+     const noteLeft=fontMobile ? w-noteWidth-10 : clamp(w-side*.45,20,w-noteWidth-24);
+     const noteHeight=note.offsetHeight;
+     const minTop=w+h-side-noteLeft+(fontMobile?14:22);
+     const maxTop=h-noteHeight-(fontMobile?12:24);
+     const idealTop=h-side*(fontMobile?.47:.48);
+     note.style.left=`${Math.round(noteLeft)}px`;
+     note.style.top=`${Math.round(Math.min(maxTop,Math.max(minTop,idealTop)))}px`;
+     // Wait until the fold is almost fully open before showing the annotation.
+     note.style.opacity=(t>.94 ? Math.min(1,(t-.94)/.05) : 0).toString();
      // Restrict the clickable region to the actual corner rather than covering About.
      const hit=[A,C,B,{x:w,y:h}].map(p=>`${clamp(p.x/w*100,0,100).toFixed(2)}% ${clamp(p.y/h*100,0,100).toFixed(2)}%`);
      // Use the outline of both the turned flap and original lower-right corner.
