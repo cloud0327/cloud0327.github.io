@@ -158,11 +158,15 @@
 
     /* Activated only by the pumpkin: the portfolio keeps its restrained layout. */
     :root.halloween-theme {
-      --paper:#fcf4ec;
-      --ink:#352922;
-      --muted:#826e63;
-      --line:#e5d1c0;
-      --accent:#a65330;
+      --paper:#fff3ea;
+      --ink:#302438;
+      --muted:#765d76;
+      --line:#e5cfe4;
+      --accent:#b94b05;
+      --accent-strong:#ef7618;
+      --accent-purple:#7041a1;
+      --accent-purple-soft:#f0e6fb;
+      --accent-orange-soft:#ffe3ce;
     }
     body, .discipline-card, .tag, .preview, .section-heading, footer, .paper-secret-trigger,
     nav, .eyebrow, .intro, .project-desc, .meta, .about-copy,
@@ -187,6 +191,77 @@
     .halloween-theme .ghost-peek { color:#a47b69; }
     .halloween-theme .ghost-peek:hover { background:transparent; }
     .halloween-theme .ghost-flashlight svg { color:#8f6a55; }
+
+    /* Vivid seasonal accents are opt-in: never affect the default portfolio. */
+    .halloween-theme .wordmark,
+    .halloween-theme h1 { color:#563474; }
+    .halloween-theme nav { color:#7041a1; }
+    .halloween-theme nav a:hover { color:#b94b05; }
+    .halloween-theme .eyebrow,
+    .halloween-theme summary { color:#b94b05; }
+    .halloween-theme .hero .intro,
+    .halloween-theme .project-desc,
+    .halloween-theme .about-copy,
+    .halloween-theme .detail-copy { color:#635165; }
+    .halloween-theme .detail-copy strong { color:#55356e; }
+    .halloween-theme .section-heading { border-top-color:#cda8e0; }
+    .halloween-theme .section-heading h2,
+    .halloween-theme .project-title,
+    .halloween-theme .section-index,
+    .halloween-theme .meta { color:#7041a1; }
+    .halloween-theme .project-n { color:#b94b05; }
+    .halloween-theme details { border-color:#e4cee9; }
+    .halloween-theme .discipline-card {
+      background:var(--accent-purple-soft);
+      color:#563677;
+      box-shadow:inset 0 0 0 1px #e1ccef;
+    }
+    .halloween-theme .discipline-card svg { stroke:#7041a1; }
+    .halloween-theme .discipline-card:nth-child(odd) {
+      background:var(--accent-orange-soft);
+      color:#8a3d09;
+      box-shadow:inset 0 0 0 1px #f4c9aa;
+    }
+    .halloween-theme .discipline-card:nth-child(odd) svg { stroke:#b94b05; }
+    .halloween-theme .tag { background:#fff0e4; border-color:#d9b9ed; color:#7041a1; }
+    .halloween-theme .preview { border-color:#d9b9ed; }
+    .halloween-theme .profile-row dt,
+    .halloween-theme .history-heading,
+    .halloween-theme .profile-roman,
+    .halloween-theme .profile-muted { color:#7041a1; }
+    .halloween-theme .profile-row dd { color:#523f59; }
+    .halloween-theme .profile-title-dot { color:#ef7618; }
+    .halloween-theme .branch-label-main {
+      background:var(--accent-purple-soft);
+      color:#7041a1;
+      border-color:#cdb0e7;
+    }
+    .halloween-theme .branch-label { background:#f0e6fb; color:#7041a1; }
+    .halloween-theme .commit h2 { color:#7041a1; }
+    .halloween-theme .commit-prefix,
+    .halloween-theme .commit-date { color:#b94b05; }
+    .halloween-theme .commit p { color:#765e77; }
+    .halloween-theme .commit-content { border-color:#e7d4ee; }
+    .halloween-theme .commit:not(:last-child)::before { border-color:#b99bd8; }
+    .halloween-theme .commit::after { border-color:#7041a1; }
+    .halloween-theme .commit-current::after { background:#ef7618; border-color:#ef7618; }
+    .halloween-theme .contact-link { color:#7041a1; }
+    .halloween-theme .contact-link:hover { color:#b94b05; }
+    .halloween-theme footer { color:#704e7c; }
+    .halloween-theme .season-trigger,
+    .halloween-theme .season-trigger:hover { color:#e86b12; background:transparent; }
+    .halloween-theme .ghost-peek { color:#8a64b3; }
+    .halloween-theme .ghost-peek:hover { color:#7041a1; background:transparent; }
+    .halloween-theme .ghost-flashlight svg { color:#b94b05; }
+    .halloween-theme .page-curl-note { color:#624b6e; }
+    .halloween-theme .page-curl-action::before { color:#7041a1; }
+    .discipline-card svg, .branch-label, .branch-label-main, .commit-content {
+      transition:color 650ms ease, stroke 650ms ease, background-color 650ms ease, border-color 650ms ease;
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .discipline-card svg, .branch-label, .branch-label-main, .commit-content { transition:none; }
+    }
+
     .season-trigger { transform-origin:center; }
     .season-trigger.is-sparking svg { animation:pumpkin-spark 740ms cubic-bezier(.2,.7,.25,1) both; }
     @keyframes pumpkin-spark {
